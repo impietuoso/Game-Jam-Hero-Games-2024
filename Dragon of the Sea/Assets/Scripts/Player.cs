@@ -24,6 +24,8 @@ public class Player : MonoBehaviour {
     public float currentWaterBallSize;
     public float waterBallIncreaseValue;
     public float waterSpendValue;
+    public float walkValue;
+    public float resetWalkValue;
 
     public bool facingRight;
     public bool showGizmos;
@@ -31,6 +33,8 @@ public class Player : MonoBehaviour {
     public bool jumping;
     public bool countComboResetTime;
     public bool charging;
+    public bool isStoping;
+    public bool canCountWalkValue;
 
     public LayerMask groundLayer;
     public Transform groundCheck;
@@ -42,6 +46,8 @@ public class Player : MonoBehaviour {
 
     public GameObject waterBall;
     public GameObject waterProjectile;
+
+    private InputAction.CallbackContext lastInput;
 
     void Awake() {
         rb = GetComponent<Rigidbody2D>();
@@ -73,6 +79,8 @@ public class Player : MonoBehaviour {
             else currentWaterBallSize = maxWaterBallSize;
             waterBall.transform.localScale = Vector2.one * currentWaterBallSize;
         }
+
+        if (playerAxis.x != 0 && canCountWalkValue) walkValue += Mathf.Abs(playerAxis.x) * Time.deltaTime;
 
         waterSlider.value = currentWaterBallSize;
 
@@ -112,18 +120,42 @@ public class Player : MonoBehaviour {
     }
 
     public void PlayerMove(InputAction.CallbackContext context) {
-        if (!isAttacking) {
-            playerAxis = context.ReadValue<Vector2>();
-            if (context.canceled && playerAxis.x == 0) {
-                anim.SetTrigger("Stop");
-                if (IsGrounded()) SpawnStopParticle();
+        if (isAttacking) return;
+        if (isStoping) return;
+        if (!IsGrounded()) return;
+        playerAxis = context.ReadValue<Vector2>();
+
+        if (context.performed) {
+            if (playerAxis.x != 0) {
+                lastInput = context;
+                if (!canCountWalkValue) {
+                    canCountWalkValue = true;
+                }
             }
         }
+
+        if (context.canceled) {
+            if (walkValue >= resetWalkValue) {
+                isStoping = true;
+                playerAxis.x = 0;
+                anim.SetTrigger("Stop");
+                SpawnStopParticle();
+                PlayerMove(context);
+            }
+            canCountWalkValue = false;
+            walkValue = 0;
+        }
+    }
+
+    public void EnablePlayerMove() {
+        isStoping = false;
+        PlayerMove(lastInput);
     }
 
     public void Jump(InputAction.CallbackContext context) {
         if (isAttacking) return;
         if (context.performed && IsGrounded()) {
+            canCountWalkValue = false;
             jumping = true;
             anim.SetTrigger("Jump");
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
@@ -232,6 +264,8 @@ public class Player : MonoBehaviour {
 
     public void SpecialAttack(InputAction.CallbackContext context) {
         if (!IsGrounded()) return;
+        if (isStoping) return;
+        if (playerAxis.x != 0) return;
 
         if (context.performed && !isAttacking) {
             if (!charging) {
@@ -279,7 +313,10 @@ public class Player : MonoBehaviour {
     private void OnCollisionEnter2D(Collision2D col) {
         if (col.gameObject.tag == "Ground") {
             if (Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer)) {
+                playerAxis.x = 0;
+                PlayerMove(lastInput);
                 jumping = false;
+                canCountWalkValue = true;
                 SpawnJumpParticle();
             }
         }
@@ -294,7 +331,9 @@ public class Player : MonoBehaviour {
     }
 
     private bool IsGrounded() {
-        return Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer);
+        bool grounded = Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer);
+        if (!grounded && lastInput.ReadValue<Vector2>().x == 0) playerAxis.x = 0; 
+        return grounded;
     }
 
 }

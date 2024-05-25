@@ -440,12 +440,16 @@ MonoBehaviour:
   currentWaterBallSize: 0
   waterBallIncreaseValue: 0.3
   waterSpendValue: 0.1
+  walkValue: 0
+  resetWalkValue: 0.6
   facingRight: 1
   showGizmos: 1
   isAttacking: 0
   jumping: 0
   countComboResetTime: 0
   charging: 0
+  isStoping: 0
+  canCountWalkValue: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -454,6 +458,7 @@ MonoBehaviour:
   stopPosition: {fileID: 5061803429223431947}
   rb: {fileID: 689496424647956369}
   anim: {fileID: 233523144180412473}
+  waterSlider: {fileID: 0}
   waterBall: {fileID: 0}
   waterProjectile: {fileID: 615953023352198370, guid: 7fa461349ae1b374ca3c9a7f5c052a16, type: 3}
 --- !u!114 &9065556613355431157
