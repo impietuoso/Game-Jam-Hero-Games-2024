@@ -1136,9 +1136,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PauseBehaviour, Assembly-CSharp
-        m_MethodName: Unpause
+      - m_Target: {fileID: 3929358748082131764}
+        m_TargetAssemblyTypeName: GameConfig, Assembly-CSharp
+        m_MethodName: PauseGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1641,7 +1641,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44840e445712c9d4281ea7ef51527839, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadingScreen: {fileID: 0}
+  loadingScreen: {fileID: 3922792543937934268}
 --- !u!1 &1461768120963715421
 GameObject:
   m_ObjectHideFlags: 0
@@ -10052,8 +10052,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameConfig, Assembly-CSharp
+      - m_Target: {fileID: 5638053601794297112}
+        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
         m_MethodName: LoadScene
         m_Mode: 3
         m_Arguments:
@@ -11708,6 +11708,7 @@ MonoBehaviour:
   windowModeDropdown: {fileID: 795135333459748481}
   BGMSlider: {fileID: 8443497376437163536}
   SFXSlider: {fileID: 8516108569662673170}
+  pauseCanvas: {fileID: 6279568003846325794}
 --- !u!1 &7905151211399217263
 GameObject:
   m_ObjectHideFlags: 0

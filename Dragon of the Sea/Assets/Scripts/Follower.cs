@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-
 public class Follower : MonoBehaviour {
     public Transform entity;
     public Transform target;
@@ -14,6 +10,6 @@ public class Follower : MonoBehaviour {
     }
 
     public void Follow() {
-        entity.position = Vector3.SmoothDamp(entity.position, target.position, ref currentVelocity, followTime);
+        if(target) entity.position = Vector3.SmoothDamp(entity.position, target.position, ref currentVelocity, followTime);
     }
 }

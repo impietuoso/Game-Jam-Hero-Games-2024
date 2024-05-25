@@ -5,6 +5,7 @@ using UnityEngine;
 public class Disable : MonoBehaviour
 {
     public void DisableObject() {
-        gameObject.SetActive(false);
+        Destroy(gameObject);
+        //gameObject.SetActive(false);
     }
 }

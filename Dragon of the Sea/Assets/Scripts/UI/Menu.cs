@@ -9,6 +9,7 @@ public class Menu : MonoBehaviour
     public CanvasGroup loadingScreen;
 
     public void LoadScene(int scene) {
+        if(Time.timeScale == 0) Time.timeScale = 1;
         SceneManager.LoadSceneAsync(scene);
     }
 

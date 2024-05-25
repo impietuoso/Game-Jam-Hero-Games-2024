@@ -14,6 +14,8 @@ public class GameConfig : MonoBehaviour {
     public Slider BGMSlider;
     public Slider SFXSlider;
 
+    public CanvasGroup pauseCanvas;
+
     Resolution[] resolutions;
     List<Resolution> filteredResoltions;
 
@@ -88,8 +90,15 @@ public class GameConfig : MonoBehaviour {
     }
 
     public void PauseGame() {
-        if (Time.timeScale == 0) Time.timeScale = 1;
-        else Time.timeScale = 0;
+        if (Time.timeScale == 0) {
+            Time.timeScale = 1;
+            pauseCanvas.blocksRaycasts = false;
+            pauseCanvas.alpha = 0;
+        } else {
+            Time.timeScale = 0;
+            pauseCanvas.blocksRaycasts = true;
+            pauseCanvas.alpha = 1;
+        }
     }
 
     private float LinearToDecibel(float linear) {
