@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: fe5d07e083393b5448fafcbc40245cbb
+guid: 90f573cd7bd1ddc4c99821a10e12fe31
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -94,7 +94,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: Android
+    buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -110,7 +110,70 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: terra 32x35_0
+      name: terra 32x35 1_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 35
+        width: 32
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56e2e792a247a824ba67dce2018c3744
+      internalID: 979805892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: terra 32x35 1_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 35
+        width: 32
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0af7b147c32a9d46b0ff1827b4df981
+      internalID: 1125583522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: terra 32x35 1_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 35
+        width: 32
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5753db4b4d099614aac0d2114e34eaaf
+      internalID: 1089237675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: terra 32x35 1_3
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +187,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ae0376d3f8e3aa44a9df6baed95626c7
-      internalID: 886097514
+      spriteID: e40b7fd1c355f314cb90e10206709a7d
+      internalID: -1560006778
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: terra 32x35_1
+      name: terra 32x35 1_4
       rect:
         serializedVersion: 2
         x: 32
@@ -145,14 +208,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bb2d02f264e5fe0438dfbcce9706a082
-      internalID: 309209175
+      spriteID: d097a601a39fd9f488771a2e3c94c41c
+      internalID: 969991344
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: terra 32x35_2
+      name: terra 32x35 1_5
       rect:
         serializedVersion: 2
         x: 64
@@ -166,8 +229,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b4ac49049d1cab544afe18fb693ccecf
-      internalID: 376407652
+      spriteID: f62eda13e1db5084086b2e502c4ffa01
+      internalID: 1562362119
       vertices: []
       indices: 
       edges: []
@@ -183,9 +246,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      terra 32x35_0: 886097514
-      terra 32x35_1: 309209175
-      terra 32x35_2: 376407652
+      terra 32x35 1_0: 979805892
+      terra 32x35 1_1: 1125583522
+      terra 32x35 1_2: 1089237675
+      terra 32x35 1_3: -1560006778
+      terra 32x35 1_4: 969991344
+      terra 32x35 1_5: 1562362119
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
