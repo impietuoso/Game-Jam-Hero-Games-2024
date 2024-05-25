@@ -56,6 +56,9 @@ public class Player : MonoBehaviour {
         waterSlider.maxValue = maxWaterBallSize;
     }
 
+    public ParticleSystem dust;
+
+
     void Start() {
         
     }
@@ -88,6 +91,11 @@ public class Player : MonoBehaviour {
 
         TryResetCombo();
         TryFlip();
+
+        
+
+        
+
     }
 
     private void TryResetCombo() {
@@ -103,7 +111,8 @@ public class Player : MonoBehaviour {
 
     private void PassAnimationValues() {
         anim.SetFloat("HorizontalSpeed", Mathf.Abs(rb.velocity.x));
-        int verticalSpeed = rb.velocity.y >= 0 ? 1 : 0;
+        
+        int verticalSpeed = rb.velocity.y >= 0 ? 1 : 0 ;
         anim.SetFloat("VerticalSpeed", Mathf.Abs(verticalSpeed));
         anim.SetBool("IsGrounded", IsGrounded());
         anim.SetBool("Jumping", jumping);
@@ -117,6 +126,7 @@ public class Player : MonoBehaviour {
     private void Flip() {
         transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
         facingRight = !facingRight;
+        
     }
 
     public void PlayerMove(InputAction.CallbackContext context) {
@@ -251,9 +261,11 @@ public class Player : MonoBehaviour {
     }
 
     IEnumerator Impulse(float dir) {
+        
         playerAxis.x = dir;
         yield return new WaitForSeconds(stepStopTime);
         playerAxis.x = 0;
+        
     }
 
     public void DisableAttack() {
