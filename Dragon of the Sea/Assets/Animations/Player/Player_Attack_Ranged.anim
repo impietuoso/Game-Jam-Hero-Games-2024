@@ -103,7 +103,7 @@ AnimationClip:
     messageOptions: 0
   - time: 0.27272728
     functionName: PlaySFX
-    data: pew
+    data: Ranged Attack
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -117,7 +117,7 @@ AnimationClip:
     messageOptions: 0
   - time: 0.6363636
     functionName: PlaySFX
-    data: pew
+    data: Ranged Attack
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

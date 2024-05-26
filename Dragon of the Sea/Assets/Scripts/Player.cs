@@ -7,56 +7,65 @@ using UnityEngine.UI;
 using UnityEngine.Windows;
 
 public class Player : MonoBehaviour {
+
+    #region Variaveis
+
     public static Player instance;
-    public Vector2 playerAxis;
+    private Vector2 playerAxis;
     public float playerVelocity;
     public float jumpForce;
     public float fallMultiply;
+    private float walkValue;
+    public float resetWalkValue;
+    public float jumpingSlow;
+
+    [Space(25)]
     public float meleeAttackRange;
     public float attackSpeed;
     public float attackFireRate;
     public float projectileSpeed;
     public float stepDistance;
     public float stepStopTime;
-    public float comboID = 1;
+    private float comboID = 1;
     public float resetComboTime;
     public float currentComboTime;
     public float minWaterBallSize;
     public float maxWaterBallSize;
-    public float currentWaterBallSize;
+    private float currentWaterBallSize;
     public float waterBallIncreaseValue;
     public float waterSpendValue;
-    public float walkValue;
-    public float resetWalkValue;
 
+    [Space(25)]
     public bool facingRight;
+    private bool isAttacking;
+    private bool jumping;
+    private bool countComboResetTime;
+    private bool charging;
+    private bool isStoping;
+    private bool canCountWalkValue;
     public bool showGizmos;
-    public bool isAttacking;
-    public bool jumping;
-    public bool countComboResetTime;
-    public bool charging;
-    public bool isStoping;
-    public bool canCountWalkValue;
 
+    [Space(25)]
     public LayerMask groundLayer;
     public Transform groundCheck;
     public Transform dustPosition;
     public Transform stopPosition;
-    public Rigidbody2D rb;
-    public Animator anim;
+    private Rigidbody2D rb;
+    private Animator anim;
     public Slider waterSlider;
     public ParticleSystem walkDustParticle;
     public Playlist playlist;
 
+    [Space(25)]
     public GameObject waterBall;
     public GameObject waterProjectile;
 
-    public PlayerInput input;
+    private PlayerInput input;
     private InputAction.CallbackContext lastInput;
-    public InputActionMap playerActionMap;
-    public InputActionMap uiActionMap;
-    //public bool WasControlsEnabledBeforePause = true;
+    private InputActionMap playerActionMap;
+    private InputActionMap uiActionMap;
 
+    #endregion
 
     void Awake() {
         instance = this;
@@ -74,9 +83,10 @@ public class Player : MonoBehaviour {
     }
 
     void Update() {
-        rb.velocity = new Vector2(playerAxis.x * playerVelocity, rb.velocity.y);
+        if (IsGrounded()) rb.velocity = new Vector2(playerAxis.x * playerVelocity, rb.velocity.y);
+        else rb.velocity = new Vector2(playerAxis.x * (playerVelocity - jumpingSlow), rb.velocity.y);
 
-        if(countComboResetTime) {
+        if (countComboResetTime) {
             currentComboTime += Time.deltaTime;
             if(currentComboTime > resetComboTime) {
                 currentComboTime = 0;
@@ -103,6 +113,7 @@ public class Player : MonoBehaviour {
         TryFlip();
     }
 
+    #region Controles
 
     public void EnablePlayerControls() {
         uiActionMap.Disable();
@@ -115,7 +126,7 @@ public class Player : MonoBehaviour {
         uiActionMap.Enable();
     }
 
-
+    #endregion
 
     private void TryResetCombo() {
         if (countComboResetTime) {
@@ -151,7 +162,6 @@ public class Player : MonoBehaviour {
     public void PlayerMove(InputAction.CallbackContext context) {
         if (isAttacking) return;
         if (isStoping) return;
-        if (!IsGrounded()) return;
         playerAxis = context.ReadValue<Vector2>();
 
         if (context.performed) {
@@ -165,14 +175,14 @@ public class Player : MonoBehaviour {
         }
 
         if (context.canceled) {
-            if (walkValue >= resetWalkValue) {
+            if (walkValue >= resetWalkValue && IsGrounded()) {
                 isStoping = true;
                 playerAxis.x = 0;
-                walkDustParticle.Stop();
                 anim.SetTrigger("Stop");
                 SpawnStopParticle();
+                walkDustParticle.Stop();
                 PlayerMove(context);
-            }
+            }            
             canCountWalkValue = false;
             walkValue = 0;
         }
@@ -350,6 +360,7 @@ public class Player : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D col) {
         if (col.gameObject.tag == "Ground") {
+            rb.velocity = Vector2.zero;
             if (Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer)) {
                 playerAxis.x = 0;
                 if (isStoping) isStoping = false;
@@ -372,7 +383,9 @@ public class Player : MonoBehaviour {
 
     private bool IsGrounded() {
         bool grounded = Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer);
-        if (!grounded && lastInput.ReadValue<Vector2>().x == 0) playerAxis.x = 0; 
+        if (!grounded) walkDustParticle.Stop();
+        if (!grounded && lastInput.ReadValue<Vector2>().x == 0) playerAxis.x = 0;
+
         return grounded;
     }
 

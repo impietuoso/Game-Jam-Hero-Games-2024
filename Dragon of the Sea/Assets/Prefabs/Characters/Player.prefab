@@ -439,49 +439,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e109739258016c9418dad5c7abd55fe6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerAxis: {x: 0, y: 0}
   playerVelocity: 12
   jumpForce: 18
   fallMultiply: 0.2
+  resetWalkValue: 0.6
+  jumpingSlow: 2.5
   meleeAttackRange: 4
   attackSpeed: 0.1
   attackFireRate: 0.2
   projectileSpeed: 22
   stepDistance: 0.2
   stepStopTime: 0.2
-  comboID: 0
   resetComboTime: 1.75
   currentComboTime: 0
   minWaterBallSize: 1
   maxWaterBallSize: 3.4
-  currentWaterBallSize: 0
   waterBallIncreaseValue: 0.3
   waterSpendValue: 0.1
-  walkValue: 0
-  resetWalkValue: 0.6
   facingRight: 1
   showGizmos: 1
-  isAttacking: 0
-  jumping: 0
-  countComboResetTime: 0
-  charging: 0
-  isStoping: 0
-  canCountWalkValue: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
   groundCheck: {fileID: 2147980804685850577}
   dustPosition: {fileID: 152087785324002265}
   stopPosition: {fileID: 5061803429223431947}
-  rb: {fileID: 689496424647956369}
-  anim: {fileID: 233523144180412473}
   waterSlider: {fileID: 0}
   walkDustParticle: {fileID: 0}
   playlist: {fileID: 9204072284077074402}
   waterBall: {fileID: 0}
   waterProjectile: {fileID: 615953023352198370, guid: 7fa461349ae1b374ca3c9a7f5c052a16, type: 3}
-  input: {fileID: 8969223762210270868}
-  WasControlsEnabledBeforePause: 1
 --- !u!114 &9065556613355431157
 MonoBehaviour:
   m_ObjectHideFlags: 0
