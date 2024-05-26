@@ -43,6 +43,7 @@ public class Player : MonoBehaviour {
     public Rigidbody2D rb;
     public Animator anim;
     public Slider waterSlider;
+    public ParticleSystem walkDustParticle;
 
     public GameObject waterBall;
     public GameObject waterProjectile;
@@ -55,9 +56,6 @@ public class Player : MonoBehaviour {
         waterSlider.minValue = minWaterBallSize;
         waterSlider.maxValue = maxWaterBallSize;
     }
-
-    public ParticleSystem dust;
-
 
     void Start() {
         
@@ -91,11 +89,6 @@ public class Player : MonoBehaviour {
 
         TryResetCombo();
         TryFlip();
-
-        
-
-        
-
     }
 
     private void TryResetCombo() {
@@ -137,6 +130,7 @@ public class Player : MonoBehaviour {
 
         if (context.performed) {
             if (playerAxis.x != 0) {
+                walkDustParticle.Play();
                 lastInput = context;
                 if (!canCountWalkValue) {
                     canCountWalkValue = true;
@@ -148,6 +142,7 @@ public class Player : MonoBehaviour {
             if (walkValue >= resetWalkValue) {
                 isStoping = true;
                 playerAxis.x = 0;
+                walkDustParticle.Stop();
                 anim.SetTrigger("Stop");
                 SpawnStopParticle();
                 PlayerMove(context);
