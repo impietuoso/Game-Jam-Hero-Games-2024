@@ -183,6 +183,7 @@ public class Player : MonoBehaviour {
         if (currentWaterBallSize < minWaterBallSize + waterSpendValue) return;
         playerAxis.x = 0;
         if (context.performed) {
+            if (isStoping) isStoping = false;
             var mousePosition = Mouse.current.position.ReadValue();
             var worldMousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
             var distance = (Vector2)worldMousePosition - (Vector2)transform.position;
@@ -276,6 +277,7 @@ public class Player : MonoBehaviour {
 
         if (context.performed && !isAttacking) {
             if (!charging) {
+                if (isStoping) isStoping = false;
                 charging = true;
                 isAttacking = true;
                 waterBall.GetComponent<WaterDropsGenerator>().StartSpawn();
@@ -321,6 +323,7 @@ public class Player : MonoBehaviour {
         if (col.gameObject.tag == "Ground") {
             if (Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer)) {
                 playerAxis.x = 0;
+                if (isStoping) isStoping = false;
                 PlayerMove(lastInput);
                 jumping = false;
                 canCountWalkValue = true;
