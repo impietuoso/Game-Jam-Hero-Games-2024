@@ -36,6 +36,12 @@ public class Player : MonoBehaviour {
     public float waterSpendValue;
 
     [Space(25)]
+    public int mouseCursor;
+    public int maxPlayerHp;
+    private int currentPlayerHp;
+    public int playerDamage;
+
+    [Space(25)]
     public bool facingRight;
     private bool isAttacking;
     private bool jumping;
@@ -52,9 +58,10 @@ public class Player : MonoBehaviour {
     public Transform stopPosition;
     private Rigidbody2D rb;
     private Animator anim;
-    public Slider waterSlider;
     public ParticleSystem walkDustParticle;
     public Playlist playlist;
+    public Slider waterSlider;
+    public Slider hpSlider;
 
     [Space(25)]
     public GameObject waterBall;
@@ -75,11 +82,14 @@ public class Player : MonoBehaviour {
         input = GetComponent<PlayerInput>();
         waterSlider.minValue = minWaterBallSize;
         waterSlider.maxValue = maxWaterBallSize;
+        hpSlider.maxValue = maxPlayerHp;
     }
 
     void Start() {
         playerActionMap = input.actions.FindActionMap("Keyboard");
         uiActionMap = input.actions.FindActionMap("UI");
+        currentPlayerHp = maxPlayerHp;
+        hpSlider.value = currentPlayerHp;
     }
 
     void Update() {
@@ -111,6 +121,10 @@ public class Player : MonoBehaviour {
 
         TryResetCombo();
         TryFlip();
+    }
+
+    private void LateUpdate() {
+        SwapCursor();
     }
 
     #region Controles
@@ -157,6 +171,20 @@ public class Player : MonoBehaviour {
         transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
         facingRight = !facingRight;
         
+    }
+
+    public void SwapCursor() {
+        var mousePosition = Mouse.current.position.ReadValue();
+        var worldMousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+        var distance = (Vector2)worldMousePosition - (Vector2)transform.position;
+        float dir = distance.x >= 0 ? 1 : -1;
+        if (distance.magnitude <= meleeAttackRange && mouseCursor == 1) {
+            ChangeMouseCursor.instance.SetMeleeMouse();
+            mouseCursor = 0;
+        } else if(distance.magnitude > meleeAttackRange && mouseCursor == 0) {
+            ChangeMouseCursor.instance.SetRangedMouse();
+            mouseCursor = 1;
+        }
     }
 
     public void PlayerMove(InputAction.CallbackContext context) {
@@ -250,9 +278,11 @@ public class Player : MonoBehaviour {
         trail.enabled = true;
         DOTween.To(() => ball.weight, (v) => ball.weight = v, 1, attackSpeed);
         playerAxis.x = dir;
+        walkDustParticle.Play();
         yield return new WaitForSeconds(attackSpeed);
         playerAxis.x = 0;
         yield return new WaitForSeconds(attackFireRate);
+        walkDustParticle.Stop();
         isAttacking = false;
     }
 

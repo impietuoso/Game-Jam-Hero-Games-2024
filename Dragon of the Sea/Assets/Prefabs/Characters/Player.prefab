@@ -445,9 +445,9 @@ MonoBehaviour:
   resetWalkValue: 0.6
   jumpingSlow: 2.5
   meleeAttackRange: 4
-  attackSpeed: 0.1
+  attackSpeed: 0.2
   attackFireRate: 0.2
-  projectileSpeed: 22
+  projectileSpeed: 37
   stepDistance: 0.2
   stepStopTime: 0.2
   resetComboTime: 1.75
@@ -456,6 +456,9 @@ MonoBehaviour:
   maxWaterBallSize: 3.4
   waterBallIncreaseValue: 0.3
   waterSpendValue: 0.1
+  mouseCursor: 0
+  maxPlayerHp: 10
+  playerDamage: 2
   facingRight: 1
   showGizmos: 1
   groundLayer:
@@ -464,9 +467,10 @@ MonoBehaviour:
   groundCheck: {fileID: 2147980804685850577}
   dustPosition: {fileID: 152087785324002265}
   stopPosition: {fileID: 5061803429223431947}
-  waterSlider: {fileID: 0}
   walkDustParticle: {fileID: 0}
   playlist: {fileID: 9204072284077074402}
+  waterSlider: {fileID: 0}
+  hlSlider: {fileID: 0}
   waterBall: {fileID: 0}
   waterProjectile: {fileID: 615953023352198370, guid: 7fa461349ae1b374ca3c9a7f5c052a16, type: 3}
 --- !u!114 &9065556613355431157
@@ -503,7 +507,7 @@ MonoBehaviour:
   - alias: Ranged Attack
     clip: {fileID: 8300000, guid: c49455b1af537f04d9ad36ce3359600b, type: 3}
   - alias: footstep
-    clip: {fileID: 8300000, guid: d2f3bd9eb01036344b43d68468cbd0f3, type: 3}
+    clip: {fileID: 8300000, guid: 9aee40b9ba20ba04f86da266d2ce7b14, type: 3}
   - alias: jump
     clip: {fileID: 8300000, guid: 03e11b2b607abb04bb2909e1bec69b11, type: 3}
   - alias: landing
@@ -623,7 +627,7 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 2813364403563848063}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 1c8220494d0f86a44ac15baaac96e378, type: 2}
+  m_Material: {fileID: 6200000, guid: f6d43363581971e408d7e4af59c8fa01, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -646,8 +650,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.1}
-  m_Size: {x: 0.8, y: 1.8}
+  m_Offset: {x: 0, y: -0.056938052}
+  m_Size: {x: 0.8, y: 1.713876}
   m_Direction: 0
 --- !u!82 &6977465381028098334
 AudioSource:
@@ -669,7 +673,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 1.0622563
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -832,7 +836,7 @@ Transform:
   m_GameObject: {fileID: 6321653280092156790}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.55, y: -0.9319999, z: 0}
+  m_LocalPosition: {x: -0.037, y: -0.912, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
