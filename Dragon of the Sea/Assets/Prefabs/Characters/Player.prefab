@@ -411,7 +411,7 @@ MonoBehaviour:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GameConfig, Assembly-CSharp
         m_MethodName: PauseGame
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -477,8 +477,11 @@ MonoBehaviour:
   anim: {fileID: 233523144180412473}
   waterSlider: {fileID: 0}
   walkDustParticle: {fileID: 0}
+  playlist: {fileID: 9204072284077074402}
   waterBall: {fileID: 0}
   waterProjectile: {fileID: 615953023352198370, guid: 7fa461349ae1b374ca3c9a7f5c052a16, type: 3}
+  input: {fileID: 8969223762210270868}
+  WasControlsEnabledBeforePause: 1
 --- !u!114 &9065556613355431157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -508,13 +511,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playlist:
-  - alias: pew
-    clip: {fileID: 8300000, guid: 8300cbbeb05f8b94caaec4b4050654b0, type: 3}
-  - alias: bruh
-    clip: {fileID: 8300000, guid: 991e320ea0b4bc34394e4ea4f24fb332, type: 3}
-  - alias: boom
-    clip: {fileID: 8300000, guid: db8351c65461aae45b1381ed9393bf97, type: 3}
+  - alias: Melee Attack
+    clip: {fileID: 8300000, guid: 69586602d9d86e94d9aebd0c0e4d8199, type: 3}
+  - alias: Ranged Attack
+    clip: {fileID: 8300000, guid: c49455b1af537f04d9ad36ce3359600b, type: 3}
+  - alias: footstep
+    clip: {fileID: 8300000, guid: d2f3bd9eb01036344b43d68468cbd0f3, type: 3}
+  - alias: jump
+    clip: {fileID: 8300000, guid: 03e11b2b607abb04bb2909e1bec69b11, type: 3}
+  - alias: landing
+    clip: {fileID: 8300000, guid: 9aee40b9ba20ba04f86da266d2ce7b14, type: 3}
+  - alias: Open Menu
+    clip: {fileID: 8300000, guid: 75c5e82c07f6af741a0671dda5708f13, type: 3}
+  - alias: Close Menu
+    clip: {fileID: 8300000, guid: 4e2caf0c2d0c0244fb373fa75de20380, type: 3}
   audio: {fileID: 6977465381028098334}
+  destructableAudio: 0
 --- !u!212 &7825955067265949218
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -535,7 +547,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 3f0f319031fe0a548907f32e9905c45f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

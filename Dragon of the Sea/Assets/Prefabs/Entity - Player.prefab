@@ -4905,6 +4905,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Follow WaterTarget
       objectReference: {fileID: 0}
+    - target: {fileID: 4248070574445396885, guid: a084e6bf7e221c9408d4a928550cc2ee, type: 3}
+      propertyPath: m_Intensity
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4248070574445396885, guid: a084e6bf7e221c9408d4a928550cc2ee, type: 3}
+      propertyPath: m_PointLightOuterRadius
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4454200754871985518, guid: a084e6bf7e221c9408d4a928550cc2ee, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2
@@ -4956,6 +4964,22 @@ PrefabInstance:
     - target: {fileID: 6060012600472373651, guid: a084e6bf7e221c9408d4a928550cc2ee, type: 3}
       propertyPath: m_AnchorMin.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6678707408960638334, guid: a084e6bf7e221c9408d4a928550cc2ee, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.522
+      objectReference: {fileID: 0}
+    - target: {fileID: 6678707408960638334, guid: a084e6bf7e221c9408d4a928550cc2ee, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.032
+      objectReference: {fileID: 0}
+    - target: {fileID: 8165202568128864304, guid: a084e6bf7e221c9408d4a928550cc2ee, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -154.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8165202568128864304, guid: a084e6bf7e221c9408d4a928550cc2ee, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 133.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

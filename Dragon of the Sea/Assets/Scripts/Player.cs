@@ -4,8 +4,10 @@ using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.Windows;
 
 public class Player : MonoBehaviour {
+    public static Player instance;
     public Vector2 playerAxis;
     public float playerVelocity;
     public float jumpForce;
@@ -44,21 +46,31 @@ public class Player : MonoBehaviour {
     public Animator anim;
     public Slider waterSlider;
     public ParticleSystem walkDustParticle;
+    public Playlist playlist;
 
     public GameObject waterBall;
     public GameObject waterProjectile;
 
+    public PlayerInput input;
     private InputAction.CallbackContext lastInput;
+    public InputActionMap playerActionMap;
+    public InputActionMap uiActionMap;
+    //public bool WasControlsEnabledBeforePause = true;
+
 
     void Awake() {
+        instance = this;
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        playlist = GetComponent<Playlist>();
+        input = GetComponent<PlayerInput>();
         waterSlider.minValue = minWaterBallSize;
         waterSlider.maxValue = maxWaterBallSize;
     }
 
     void Start() {
-        
+        playerActionMap = input.actions.FindActionMap("Keyboard");
+        uiActionMap = input.actions.FindActionMap("UI");
     }
 
     void Update() {
@@ -90,6 +102,20 @@ public class Player : MonoBehaviour {
         TryResetCombo();
         TryFlip();
     }
+
+
+    public void EnablePlayerControls() {
+        uiActionMap.Disable();
+        playerActionMap.Enable();
+    }
+
+    public void EnableUIControls() {
+        Debug.Log("Disable Player Actions");
+        playerActionMap.Disable();
+        uiActionMap.Enable();
+    }
+
+
 
     private void TryResetCombo() {
         if (countComboResetTime) {
@@ -163,6 +189,7 @@ public class Player : MonoBehaviour {
             canCountWalkValue = false;
             jumping = true;
             anim.SetTrigger("Jump");
+            playlist.PlaySFX("jump");
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             rb.gravityScale = 4;
             SpawnParticles.instance.SpawnParticle(SpawnParticles.instance.newParticle("Dust"), dustPosition.position);
@@ -184,6 +211,7 @@ public class Player : MonoBehaviour {
         playerAxis.x = 0;
         if (context.performed) {
             if (isStoping) isStoping = false;
+            walkValue = 0;
             var mousePosition = Mouse.current.position.ReadValue();
             var worldMousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
             var distance = (Vector2)worldMousePosition - (Vector2)transform.position;
@@ -223,6 +251,7 @@ public class Player : MonoBehaviour {
         PositionConstraint ball = waterBall.GetComponent<PositionConstraint>();
         DOTween.To(() => ball.weight, (v) => ball.weight = v, 0, attackSpeed);
         trail.enabled = false;
+        PlayerMove(lastInput);
     }
 
     public void RangedAttack() {
@@ -266,8 +295,7 @@ public class Player : MonoBehaviour {
 
     public void DisableAttack() {
         isAttacking = false;
-        var input = GetComponent<PlayerInput>();
-        //input.
+        PlayerMove(lastInput);
     }
 
     public void SpecialAttack(InputAction.CallbackContext context) {
@@ -281,6 +309,7 @@ public class Player : MonoBehaviour {
                 charging = true;
                 isAttacking = true;
                 waterBall.GetComponent<WaterDropsGenerator>().StartSpawn();
+                playlist.PlaySFX("Charging");
                 anim.SetBool("Charging", charging);
                 TrailRenderer trail = waterBall.GetComponent<TrailRenderer>();
                 PositionConstraint ball = waterBall.GetComponent<PositionConstraint>();
@@ -327,6 +356,7 @@ public class Player : MonoBehaviour {
                 PlayerMove(lastInput);
                 jumping = false;
                 canCountWalkValue = true;
+                playlist.PlaySFX("landing");
                 SpawnJumpParticle();
             }
         }

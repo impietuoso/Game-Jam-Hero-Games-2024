@@ -7,6 +7,7 @@ public class Playlist : MonoBehaviour
 {
     public List<Music> playlist = new();
     new public AudioSource audio;
+    public bool destructableAudio;
 
     private void Awake() {
         audio = GetComponent<AudioSource>();
@@ -14,7 +15,10 @@ public class Playlist : MonoBehaviour
 
     public void PlaySFX(string musicName) {
         foreach (Music music in playlist) {
-            if (music.alias == musicName) audio.PlayOneShot(music.clip);
+            if (music.alias == musicName) {
+                if (destructableAudio) Player.instance.playlist.audio.PlayOneShot(music.clip);
+                else audio.PlayOneShot(music.clip);
+            }
         }
     }
 }

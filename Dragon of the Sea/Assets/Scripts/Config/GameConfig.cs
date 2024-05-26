@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -90,14 +91,28 @@ public class GameConfig : MonoBehaviour {
     }
 
     public void PauseGame() {
+        Pause();
+    }
+
+    public void PauseGame(InputAction.CallbackContext context) {
+        if (context.performed) {
+            Pause();
+        }        
+    }
+
+    void Pause() {
         if (Time.timeScale == 0) {
+            Player.instance.EnablePlayerControls();
             Time.timeScale = 1;
             pauseCanvas.blocksRaycasts = false;
             pauseCanvas.alpha = 0;
+            Player.instance.playlist.PlaySFX("Close Menu");
         } else {
+            Player.instance.EnableUIControls();
             Time.timeScale = 0;
             pauseCanvas.blocksRaycasts = true;
             pauseCanvas.alpha = 1;
+            Player.instance.playlist.PlaySFX("Open Menu");
         }
     }
 
