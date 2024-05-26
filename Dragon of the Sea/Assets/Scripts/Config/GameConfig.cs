@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections.Generic;
 using TMPro;
@@ -8,6 +9,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameConfig : MonoBehaviour {
+    public static GameConfig instance;
     public AudioMixer audioMixer;
 
     public TMP_Dropdown resolutionDropdown;
@@ -16,11 +18,16 @@ public class GameConfig : MonoBehaviour {
     public Slider SFXSlider;
 
     public CanvasGroup pauseCanvas;
+    public CanvasGroup gameOverCanvas;
 
     Resolution[] resolutions;
     List<Resolution> filteredResoltions;
 
     double currentRefreshRate;
+
+    private void Awake() {
+        instance = this;
+    }
 
     private void Start() {
         UpdateSoundVolume();
@@ -131,6 +138,13 @@ public class GameConfig : MonoBehaviour {
         float linear = Mathf.Pow(10.0f, dB / 20.0f);
 
         return linear;
+    }
+
+    public void GameOver() {
+        if(gameOverCanvas != null) {
+            gameOverCanvas.blocksRaycasts = true;
+            DOTween.To(() => gameOverCanvas.alpha, (v) => gameOverCanvas.alpha = v, 1, 1);
+        }
     }
 
 }

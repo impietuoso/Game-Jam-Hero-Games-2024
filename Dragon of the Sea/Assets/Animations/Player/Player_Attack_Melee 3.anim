@@ -355,7 +355,7 @@ AnimationClip:
   m_Events:
   - time: 0.2
     functionName: PlaySFX
-    data: Melee Attack
+    data: Melee Attack 3
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

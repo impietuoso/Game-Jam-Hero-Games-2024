@@ -50,6 +50,7 @@ public class Player : MonoBehaviour {
     private bool isStoping;
     private bool canCountWalkValue;
     public bool showGizmos;
+    private bool dead;
 
     [Space(25)]
     public LayerMask groundLayer;
@@ -93,6 +94,7 @@ public class Player : MonoBehaviour {
     }
 
     void Update() {
+        if (dead) return;
         if (IsGrounded()) rb.velocity = new Vector2(playerAxis.x * playerVelocity, rb.velocity.y);
         else rb.velocity = new Vector2(playerAxis.x * (playerVelocity - jumpingSlow), rb.velocity.y);
 
@@ -163,6 +165,7 @@ public class Player : MonoBehaviour {
     }
 
     private void TryFlip() {
+        if (dead) return;
         if (rb.velocity.x > 0 && !facingRight) Flip();
         else if (rb.velocity.x < 0 && facingRight) Flip();
     }
@@ -174,6 +177,7 @@ public class Player : MonoBehaviour {
     }
 
     public void SwapCursor() {
+        if (dead) return;
         var mousePosition = Mouse.current.position.ReadValue();
         var worldMousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
         var distance = (Vector2)worldMousePosition - (Vector2)transform.position;
@@ -188,6 +192,7 @@ public class Player : MonoBehaviour {
     }
 
     public void PlayerMove(InputAction.CallbackContext context) {
+        if (dead) return;
         if (isAttacking) return;
         if (isStoping) return;
         playerAxis = context.ReadValue<Vector2>();
@@ -222,6 +227,7 @@ public class Player : MonoBehaviour {
     }
 
     public void Jump(InputAction.CallbackContext context) {
+        if (dead) return;
         if (isAttacking) return;
         if (context.performed && IsGrounded()) {
             canCountWalkValue = false;
@@ -238,12 +244,14 @@ public class Player : MonoBehaviour {
     }
 
     public void Interact(InputAction.CallbackContext context) {
+        if (dead) return;
         if (context.performed) {
 
         }
     }
 
     public void Attack(InputAction.CallbackContext context) {
+        if (dead) return;
         if (isAttacking || !IsGrounded()) return;
         if (currentWaterBallSize < minWaterBallSize + waterSpendValue) return;
         playerAxis.x = 0;
@@ -339,6 +347,7 @@ public class Player : MonoBehaviour {
     }
 
     public void SpecialAttack(InputAction.CallbackContext context) {
+        if (dead) return;
         if (!IsGrounded()) return;
         if (isStoping) return;
         if (playerAxis.x != 0) return;
@@ -403,6 +412,12 @@ public class Player : MonoBehaviour {
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D col) {
+        if (col.tag == "Enemy_Projectile") {
+            TakeDamage();
+        }
+    }
+
     private void OnDrawGizmos() {
         if (showGizmos == false) return;
 
@@ -417,6 +432,37 @@ public class Player : MonoBehaviour {
         if (!grounded && lastInput.ReadValue<Vector2>().x == 0) playerAxis.x = 0;
 
         return grounded;
+    }
+
+    public void TakeDamage() {
+        var damage = 1;
+        if(currentPlayerHp - damage <= 0) {
+            Death();
+        } else {
+            currentPlayerHp -= damage;
+            SelectTakeDamageSound();
+            anim.SetTrigger("Take Damage");
+        }
+        hpSlider.value = currentPlayerHp;
+    }
+
+    void Death() {
+        dead = true;
+        ChangeMouseCursor.instance.SetNormalMouse();
+        currentPlayerHp = 0;
+        playlist.PlaySFX("Death");
+        anim.SetTrigger("Death");
+        playerAxis.x = 0;
+        rb.velocity = Vector2.zero;
+        rb.gravityScale = 4;
+        walkDustParticle.Stop();
+        GameConfig.instance.GameOver();
+    }
+
+    public void SelectTakeDamageSound() {
+        var id = Random.Range(1,4);
+        if (id > 3) id = 3;
+        playlist.PlaySFX("Take Damage " + id);
     }
 
 }

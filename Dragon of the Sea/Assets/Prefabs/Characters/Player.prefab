@@ -470,7 +470,7 @@ MonoBehaviour:
   walkDustParticle: {fileID: 0}
   playlist: {fileID: 9204072284077074402}
   waterSlider: {fileID: 0}
-  hlSlider: {fileID: 0}
+  hpSlider: {fileID: 0}
   waterBall: {fileID: 0}
   waterProjectile: {fileID: 615953023352198370, guid: 7fa461349ae1b374ca3c9a7f5c052a16, type: 3}
 --- !u!114 &9065556613355431157
@@ -502,10 +502,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playlist:
-  - alias: Melee Attack
+  - alias: Melee Attack 1
     clip: {fileID: 8300000, guid: 69586602d9d86e94d9aebd0c0e4d8199, type: 3}
+  - alias: Melee Attack 2
+    clip: {fileID: 8300000, guid: f1b6542d9bd443647a21302cef80746e, type: 3}
+  - alias: Melee Attack 3
+    clip: {fileID: 8300000, guid: 8f1e1398130356e4589d209631852c46, type: 3}
   - alias: Ranged Attack
-    clip: {fileID: 8300000, guid: c49455b1af537f04d9ad36ce3359600b, type: 3}
+    clip: {fileID: 8300000, guid: 8014c01c4ec06504a94b1c44842a69dc, type: 3}
   - alias: footstep
     clip: {fileID: 8300000, guid: 9aee40b9ba20ba04f86da266d2ce7b14, type: 3}
   - alias: jump
@@ -516,6 +520,14 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 75c5e82c07f6af741a0671dda5708f13, type: 3}
   - alias: Close Menu
     clip: {fileID: 8300000, guid: 4e2caf0c2d0c0244fb373fa75de20380, type: 3}
+  - alias: Take Damage 1
+    clip: {fileID: 8300000, guid: f09265cc297687d49aca3b36729b6a3c, type: 3}
+  - alias: Take Damage 2
+    clip: {fileID: 8300000, guid: a5c9668f1761c9b468746741baaeb291, type: 3}
+  - alias: Take Damage 3
+    clip: {fileID: 8300000, guid: bc0718f125e2add40a14349a99208239, type: 3}
+  - alias: Death
+    clip: {fileID: 8300000, guid: a995b944fa5e1c94f8381ecb3213ca0f, type: 3}
   audio: {fileID: 6977465381028098334}
   destructableAudio: 0
 --- !u!212 &7825955067265949218

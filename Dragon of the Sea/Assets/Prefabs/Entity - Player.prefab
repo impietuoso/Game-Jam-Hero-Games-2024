@@ -5638,6 +5638,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2813364403563848063, guid: 0ed222e1cf077644197c6abc105d06b6, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4030286516935545908, guid: 0ed222e1cf077644197c6abc105d06b6, type: 3}
       propertyPath: hlSlider
       value: 
@@ -5702,6 +5706,10 @@ PrefabInstance:
       propertyPath: entity
       value: 
       objectReference: {fileID: 4356204589768529577}
+    - target: {fileID: 9204072284077074402, guid: 0ed222e1cf077644197c6abc105d06b6, type: 3}
+      propertyPath: playlist.Array.data[4].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 4e8f2304874c05841b67e6b6ce7245bc, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
