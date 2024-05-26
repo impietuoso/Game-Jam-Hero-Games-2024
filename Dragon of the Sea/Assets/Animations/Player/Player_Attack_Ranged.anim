@@ -22,28 +22,28 @@ AnimationClip:
     curve:
     - time: 0
       value: {fileID: 311489634, guid: 5bd57866766c78143bc07de1a842f346, type: 3}
-    - time: 0.09090909
+    - time: 0.071428575
       value: {fileID: 16236573, guid: 5bd57866766c78143bc07de1a842f346, type: 3}
-    - time: 0.18181819
+    - time: 0.14285715
       value: {fileID: -1817611279, guid: 5bd57866766c78143bc07de1a842f346, type: 3}
-    - time: 0.27272728
+    - time: 0.21428572
       value: {fileID: 2078995405, guid: 5bd57866766c78143bc07de1a842f346, type: 3}
-    - time: 0.36363637
+    - time: 0.2857143
       value: {fileID: 2064320376, guid: 5bd57866766c78143bc07de1a842f346, type: 3}
-    - time: 0.45454547
+    - time: 0.35714287
       value: {fileID: -549834802, guid: 5bd57866766c78143bc07de1a842f346, type: 3}
-    - time: 0.54545456
+    - time: 0.42857143
       value: {fileID: 759799642, guid: 5bd57866766c78143bc07de1a842f346, type: 3}
-    - time: 0.6363636
+    - time: 0.5
       value: {fileID: 280791511, guid: 5bd57866766c78143bc07de1a842f346, type: 3}
-    - time: 0.72727275
+    - time: 0.5714286
       value: {fileID: -45179909, guid: 5bd57866766c78143bc07de1a842f346, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
     flags: 2
-  m_SampleRate: 11
+  m_SampleRate: 14
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -74,7 +74,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.8181819
+    m_StopTime: 0.6428572
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -94,28 +94,28 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.27272728
+  - time: 0.21428572
     functionName: UseRangedAttack
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.27272728
+  - time: 0.21428572
     functionName: PlaySFX
     data: Ranged Attack
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.6363636
+  - time: 0.5
     functionName: UseRangedAttack
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 1
     messageOptions: 0
-  - time: 0.6363636
+  - time: 0.5
     functionName: PlaySFX
     data: Ranged Attack
     objectReferenceParameter: {fileID: 0}
