@@ -23740,6 +23740,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jangada
       objectReference: {fileID: 0}
+    - target: {fileID: 321657768956012733, guid: 02b55c047ce20d5488d36508c8c25ad4, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 321657768956012733, guid: 02b55c047ce20d5488d36508c8c25ad4, type: 3}
+      propertyPath: m_TagString
+      value: Interactable
+      objectReference: {fileID: 0}
     - target: {fileID: 4449239067374563625, guid: 02b55c047ce20d5488d36508c8c25ad4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 44.74
@@ -24386,6 +24394,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5776741979746567051, guid: e0172f31b14d1f143bfcac76b33b2ee9, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6311536973189183238, guid: e0172f31b14d1f143bfcac76b33b2ee9, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6322452784834815018, guid: e0172f31b14d1f143bfcac76b33b2ee9, type: 3}
