@@ -1,0 +1,3 @@
+﻿fade_out 0.5 "black"
+wait 1
+load_scene "Island"

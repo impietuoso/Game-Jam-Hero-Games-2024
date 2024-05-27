@@ -1,0 +1,65 @@
+﻿fade_out 0.5 "black"
+wait 1
+if cutsceneended == false
+ bg "1"
+ wait 0.2
+ fade_in 0.5
+ wait 0.5
+ say "Era uma noite como qualquer outra, eu e meus companheiros da vila"
+ say "Estávamos pescando quando eles chegaram..."
+ wait 0.5
+ fade_out 0.5 "black"
+ bg "2"
+ wait 0.2
+ fade_in 0.5
+ wait 0.5
+ say "Navios negreiros jogando redes e bolas de fogo."
+ wait 0.5
+ fade_out 0.5 "black"
+ bg "3"
+ wait 0.2
+ fade_in 0.5
+ wait 0.5
+ say "Antes que eu pudesse reagir..."
+ say "fui atingido por ele..."
+ wait 0.5
+ fade_out 0.5 "black"
+ bg "4"
+ wait 0.2
+ fade_in 0.5
+ wait 0.5
+ say "Pensei que esse era o meu fim…"
+ say "até que eu ouvi…"
+ wait 0.5
+ fade_out 0.5 "black"
+ bg "5"
+ wait 0.2
+ fade_in 0.5
+ wait 0.5
+ say "???" "Eles escravizam o seu povo!"
+ say "Receba minha benção, liberte o seu povo, destrua o lorde do fogo."
+ say "" "Antes que eu pudesse responder..."
+ say "???" "Seja meu guerreiro, liberte seu povo e essas terras do lorde do fogo!"
+ wait 0.5
+ fade_out 0.5 "black"
+ bg "6"
+ wait 0.2
+ fade_in 0.5
+ wait 0.5
+ say "As águas estão sobre seu comando, agora vá meu guerreiro, não temos tempos a perder!"
+ wait 0.5
+ fade_out 0.5 "black"
+ say "" "Eu me lembro de contos antigos da minha vila… Sobre o guardião dessas terras… O dragão do mar!"
+ bg "7"
+ fade_in 0.5
+ wait 0.5
+ say "Despertei com um novo proposito..."
+ bg "8"
+ say "De Libertar o meu povo de seus grilhões!"
+ fade_out 0.5 "black"
+ wait 1
+ set_var cutsceneended true
+ load_scene "BaseScene"
+else
+ load_scene "BaseScene"
+endif

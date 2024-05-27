@@ -8,6 +8,8 @@ TagManager:
   - WaterBall
   - Enemy
   - Enemy_Projectile
+  - Interactable
+  - Canvas
   layers:
   - Default
   - TransparentFX
@@ -18,7 +20,7 @@ TagManager:
   - Enemy
   - Enemy_Projectile
   - Player
-  - 
+  - Interactable
   - 
   - 
   - 

@@ -1,0 +1,11 @@
+﻿if argsCount >= 1
+  character char_left arg1
+else
+  character char_left "Explorer"
+endif
+// char_flip char_left
+char_move_x char_left -0.5
+char_move_x char_left 0.2 0.7
+char_alpha char_left 0 0
+char_alpha char_left 1 0.7
+wait 1

@@ -1,0 +1,2 @@
+﻿fade_out 0.5
+load_scene "Title Screen"

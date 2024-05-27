@@ -254,12 +254,16 @@ public class Player : MonoBehaviour {
     public void Interact(InputAction.CallbackContext context) {
         if (dead) return;
         if (context.performed) {
-            Collider2D obj = Physics2D.OverlapCircle(transform.position, meleeAttackRange, interactLayer);
+            Collider2D[] obj = Physics2D.OverlapCircleAll(transform.position, meleeAttackRange, interactLayer);
             Debug.Log("Interagiu");
-            if (obj.TryGetComponent<Interactable>(out Interactable interation)) {
-                Debug.Log("Tentou Pegar Component");
-                interation.Interact();
+            DOTween.ToAlpha(() => meleeArea.color, color => meleeArea.color = color, meleeAttackAreaAlpha, meleeAttackAreaSpeedDelay);
+            foreach (var item in obj) {
+                if (item.TryGetComponent<Interactable>(out Interactable interation)) {
+                    Debug.Log("Tentou Pegar Component");
+                    interation.Interact();
+                }
             }
+            DOTween.ToAlpha(() => meleeArea.color, color => meleeArea.color = color, 0, meleeAttackAreaSpeedDelay);
         }
     }
 
