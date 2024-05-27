@@ -67,11 +67,15 @@ public class Player : MonoBehaviour {
     [Space(15)]
     public GameObject waterBall;
     public GameObject waterProjectile;
+    public SpriteRenderer meleeArea;
 
     private PlayerInput input;
     private InputAction.CallbackContext lastInput;
     private InputActionMap playerActionMap;
     private InputActionMap uiActionMap;
+
+    public float meleeAttackAreaAlpha;
+    public float meleeAttackAreaSpeedDelay;
 
     #endregion
 
@@ -120,6 +124,7 @@ public class Player : MonoBehaviour {
         waterSlider.value = currentWaterBallSize;
 
         PassAnimationValues();
+        meleeArea.gameObject.transform.localScale = Vector2.one * meleeAttackRange;
 
         TryResetCombo();
         TryFlip();
@@ -248,13 +253,20 @@ public class Player : MonoBehaviour {
     public void Interact(InputAction.CallbackContext context) {
         if (dead) return;
         if (context.performed) {
-
+            Collider2D obj = Physics2D.OverlapCircle(transform.position, meleeAttackRange);
+            if(obj.TryGetComponent<Interactable>(out Interactable interation)) {
+                interation.Interact();
+            }
         }
     }
 
     public void Attack(InputAction.CallbackContext context) {
         if (dead) return;
         if (isAttacking || !IsGrounded()) return;
+        if (context.performed) DOTween.ToAlpha(() => meleeArea.color, color => meleeArea.color = color, meleeAttackAreaAlpha, meleeAttackAreaSpeedDelay);
+        if (context.canceled) DOTween.ToAlpha(() => meleeArea.color, color => meleeArea.color = color, 0, meleeAttackAreaSpeedDelay);
+
+
         if (currentWaterBallSize < minWaterBallSize + waterSpendValue) return;
         playerAxis.x = 0;
         if (context.performed) {
@@ -268,6 +280,7 @@ public class Player : MonoBehaviour {
             if (distance.magnitude <= meleeAttackRange) MeleeAttack(dir);
             else RangedAttack();
         }
+        
     }
 
     private void MeleeAttack(float dir) {
@@ -305,6 +318,7 @@ public class Player : MonoBehaviour {
         DOTween.To(() => ball.weight, (v) => ball.weight = v, 0, attackSpeed);
         trail.enabled = false;
         PlayerMove(lastInput);
+        DOTween.ToAlpha(() => meleeArea.color, color => meleeArea.color = color, 0, meleeAttackAreaSpeedDelay);
     }
 
     public void RangedAttack() {
@@ -330,6 +344,8 @@ public class Player : MonoBehaviour {
         newProjectile.GetComponent<Rigidbody2D>().velocity = (direction.normalized * projectileSpeed);
         newProjectile = null;
 
+
+        DOTween.ToAlpha(() => meleeArea.color, color => meleeArea.color = color, 0, meleeAttackAreaSpeedDelay);
         HorizontalImpulse(distance);
     }
 
