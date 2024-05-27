@@ -68,6 +68,7 @@ public class Player : MonoBehaviour {
     [Space(15)]
     public GameObject waterBall;
     public GameObject waterProjectile;
+    public GameObject hitbox;
     public SpriteRenderer meleeArea;
 
     private PlayerInput input;
@@ -302,8 +303,8 @@ public class Player : MonoBehaviour {
 
     private IEnumerator MeleeWaterballAttack(float dir) {
         //SpendWater();
-        if (waterBall.TryGetComponent<DamageHolder>(out DamageHolder holder)) {
-            holder.damage = playerDamage;
+        if (hitbox.TryGetComponent<DamageHolder>(out DamageHolder holder)) {
+            holder.damage = playerDamage * (int) (waterBall.transform.localScale.x * waterBallIncreaseValue);
         }
         TrailRenderer trail = waterBall.GetComponent<TrailRenderer>();
         PositionConstraint ball = waterBall.GetComponent<PositionConstraint>();
@@ -338,7 +339,7 @@ public class Player : MonoBehaviour {
         newProjectile.transform.localScale = newProjectile.transform.localScale * currentWaterBallSize;
 
         if (newProjectile.TryGetComponent<DamageHolder>(out DamageHolder holder)) {
-            holder.damage = playerDamage * (int)newProjectile.transform.localScale.x;
+            holder.damage = playerDamage;
         }
 
         var mousePosition = Mouse.current.position.ReadValue();
@@ -349,7 +350,6 @@ public class Player : MonoBehaviour {
 
         newProjectile.GetComponent<Rigidbody2D>().velocity = (direction.normalized * projectileSpeed);
         newProjectile = null;
-
 
         DOTween.ToAlpha(() => meleeArea.color, color => meleeArea.color = color, 0, meleeAttackAreaSpeedDelay);
         HorizontalImpulse(distance);
@@ -406,6 +406,13 @@ public class Player : MonoBehaviour {
                 TrailRenderer trail = waterBall.GetComponent<TrailRenderer>();
                 PositionConstraint ball = waterBall.GetComponent<PositionConstraint>();
                 //trail.enabled = false;
+
+                if(currentPlayerHp + (int)currentWaterBallSize > maxPlayerHp) {
+                    currentPlayerHp = maxPlayerHp;
+                } else {
+                    currentPlayerHp += (int)currentWaterBallSize;
+                }
+                hpSlider.value = currentPlayerHp;
                 DOTween.To(() => ball.weight, (v) => ball.weight = v, 0, attackSpeed);
             }
         }

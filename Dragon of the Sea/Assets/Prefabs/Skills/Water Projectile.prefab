@@ -20,9 +20,9 @@ GameObject:
   - component: {fileID: 3573990006480712762}
   - component: {fileID: 2913289798889561466}
   - component: {fileID: 3562258943796493279}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Water Projectile
-  m_TagString: WaterBall
+  m_TagString: PlayerHitBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -297,6 +297,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetTag:
   - Ground
+  - Enemy
   onTriggerEnter2D:
     m_PersistentCalls:
       m_Calls:

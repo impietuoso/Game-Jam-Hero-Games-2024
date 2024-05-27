@@ -186,12 +186,6 @@ public class EnemyBehaviour : MonoBehaviour {
 
     }
 
-    void Patrol() {
-        if (patrol) {
-
-        }
-    }
-
     void Attack(int dir) {
         anim.SetTrigger("Attack");
         playlist.PlaySFX("Attack");
@@ -216,7 +210,7 @@ public class EnemyBehaviour : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D col) {
         if (dead) return;
-        if (col.tag == "WaterBall") {
+        if (col.tag == "PlayerHitBox") {
             if (col.TryGetComponent<DamageHolder>(out DamageHolder holder)) {
                 if(holder.canDealDamage) TakeDamage(holder.damage);
             }
@@ -240,10 +234,11 @@ public class EnemyBehaviour : MonoBehaviour {
 
     private void Impulse() {
         if (dead) return;
+        rb.AddForce(new Vector2(0, 100), ForceMode2D.Force);
         var distance = transform.position.x - Player.instance.transform.position.x;
         var direction = distance >= 0 ? 1 : -1;
         rb.velocity = Vector2.zero;
-        rb.AddForce(new Vector2 (direction * speed * impulseForce, 0));
+        rb.AddForce(new Vector2(direction * speed * impulseForce * 100, 100), ForceMode2D.Force);
     }
 
     void Death() {
