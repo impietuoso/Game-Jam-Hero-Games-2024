@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 48936
+  controlID: 50230
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 48903
+  controlID: 50197
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -172,7 +172,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 48845
+  controlID: 50125
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -235,10 +235,10 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 199}
+      scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 882cfaff8030faff0031faff0609fbff7609fbff8c20fbffda59fbff288efbff42fefbff44fefbff840afcfff2b3fcff02b4fcff04b4fcffccf4ffffd8fafffffafaffff727500006076000020770000be6803008e6e0300
+      m_ExpandedIDs: 3c08fbff0609fbff7609fbff8c20fbffda59fbff288efbff42fefbff44fefbff840afcfff2b3fcff02b4fcff04b4fcffccf4ffffd8fafffffafaffff727500006076000020770000be6803008e6e0300
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -684,9 +684,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -9.636416, y: -2.162814, z: -0.047549613}
+    m_Target: {x: 34.96594, y: -2.7817516, z: -0.047549613}
     speed: 2
-    m_Value: {x: -9.636416, y: -2.162814, z: -0.047549613}
+    m_Value: {x: 34.96594, y: -2.7817516, z: -0.047549613}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -787,7 +787,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 48904
+  controlID: 50198
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -861,7 +861,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs
+    - Assets
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -869,15 +869,15 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Prefabs
+  - Assets
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\Unity\Repository\Game-Jam-Hero-Games-2024\Dragon of the Sea
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 56850000
-    m_LastClickedID: 34134
+    m_SelectedIDs: 24850000
+    m_LastClickedID: 34084
     m_ExpandedIDs: 000000002485000026850000288500002a8500002c8500002e850000308500003285000034850000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -931,8 +931,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: fc30faff9e2cfaff7c30faff
-    m_LastClickedInstanceID: -380676
+    m_SelectedInstanceIDs: 0209fbff
+    m_LastClickedInstanceID: -325374
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c6230000
     m_RenameOverlay:
@@ -1136,7 +1136,7 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: -381794
+  m_LastSelectedObjectID: -327012
 --- !u!114 &14
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1263,8 +1263,8 @@ MonoBehaviour:
     m_CachedPref: -160
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
-  m_LastInspectedObjectInstanceID: -381794
-  m_LastVerticalScrollValue: 357
+  m_LastInspectedObjectInstanceID: -325374
+  m_LastVerticalScrollValue: 22
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:

@@ -550,6 +550,9 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  interactLayer:
+    serializedVersion: 2
+    m_Bits: 512
   groundCheck: {fileID: 2147980804685850577}
   dustPosition: {fileID: 152087785324002265}
   stopPosition: {fileID: 5061803429223431947}

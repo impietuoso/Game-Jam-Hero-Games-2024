@@ -54,6 +54,7 @@ public class Player : MonoBehaviour {
 
     [Space(15)]
     public LayerMask groundLayer;
+    public LayerMask interactLayer;
     public Transform groundCheck;
     public Transform dustPosition;
     public Transform stopPosition;
@@ -253,8 +254,10 @@ public class Player : MonoBehaviour {
     public void Interact(InputAction.CallbackContext context) {
         if (dead) return;
         if (context.performed) {
-            Collider2D obj = Physics2D.OverlapCircle(transform.position, meleeAttackRange);
-            if(obj.TryGetComponent<Interactable>(out Interactable interation)) {
+            Collider2D obj = Physics2D.OverlapCircle(transform.position, meleeAttackRange, interactLayer);
+            Debug.Log("Interagiu");
+            if (obj.TryGetComponent<Interactable>(out Interactable interation)) {
+                Debug.Log("Tentou Pegar Component");
                 interation.Interact();
             }
         }
@@ -265,7 +268,6 @@ public class Player : MonoBehaviour {
         if (isAttacking || !IsGrounded()) return;
         if (context.performed) DOTween.ToAlpha(() => meleeArea.color, color => meleeArea.color = color, meleeAttackAreaAlpha, meleeAttackAreaSpeedDelay);
         if (context.canceled) DOTween.ToAlpha(() => meleeArea.color, color => meleeArea.color = color, 0, meleeAttackAreaSpeedDelay);
-
 
         if (currentWaterBallSize < minWaterBallSize + waterSpendValue) return;
         playerAxis.x = 0;
@@ -295,7 +297,7 @@ public class Player : MonoBehaviour {
     }
 
     private IEnumerator MeleeWaterballAttack(float dir) {
-        SpendWater();
+        //SpendWater();
         if (waterBall.TryGetComponent<DamageHolder>(out DamageHolder holder)) {
             holder.damage = playerDamage;
         }
