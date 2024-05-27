@@ -45,10 +45,14 @@ public class EnemyBehaviour : MonoBehaviour {
     [SerializeField] private Transform player;
     private float playerDistance;
     private bool busy;
+    private bool patrol;
     private bool persuit;
     private bool invade;
     private bool dead;
     public Transform waitPoint;
+    private Transform currentPatrolPoint;
+    public Transform patrolPoint1;
+    public Transform patrolPoint2;
     public Slider hpSlider;
 
     private void Awake() {
@@ -58,6 +62,7 @@ public class EnemyBehaviour : MonoBehaviour {
         hpSlider.maxValue = maxLife;
         currentLife = maxLife;
         hpSlider.value = currentLife;
+        currentPatrolPoint = patrolPoint2;
     }
 
     private void Update() {
@@ -74,19 +79,33 @@ public class EnemyBehaviour : MonoBehaviour {
         if (player == null && !busy) {
             currentSearchTime += Time.deltaTime;
             if (type == enemy_type.Wait) {
-                if (transform.position.x != waitPoint.transform.position.x) {
-                    var homeDir = waitPoint.transform.position.x - transform.position.x;
+                var homeDir = waitPoint.transform.position.x - transform.position.x;
+
+                if (Mathf.Abs(homeDir) > 0.5f) {
                     var dir = homeDir >= 0 ? 1 : -1;
                     var homeSpeed = speed * dir;
                     transform.localScale = new Vector2(dir, 1);
                     rb.velocity = new Vector2(homeSpeed, 0);
                 } else {
-                    transform.position = new Vector2(waitPoint.transform.position.x, transform.position.y);
                     rb.velocity = Vector2.zero;
-                    transform.position = new Vector2(waitPoint.transform.position.x, transform.position.y);
+                    transform.position = new Vector2(waitPoint.transform.position.x, transform.position.y);                    
+                }
+            } else if(type == enemy_type.Patrol) {
+                var homeDir = currentPatrolPoint.transform.position.x - transform.position.x;
+
+                if (Mathf.Abs(homeDir) > 0.2f) {
+                    var dir = homeDir >= 0 ? 1 : -1;
+                    var homeSpeed = speed/2 * dir;
+                    transform.localScale = new Vector2(dir, 1);
+                    rb.velocity = new Vector2(homeSpeed, 0);
+                } else {
                     rb.velocity = Vector2.zero;
+                    transform.position = new Vector2(currentPatrolPoint.transform.position.x, transform.position.y);
+                    if (currentPatrolPoint == patrolPoint1) currentPatrolPoint = patrolPoint2;
+                    else currentPatrolPoint = patrolPoint1;
                 }
             }
+
             if (currentSearchTime >= searchTime) {
                 currentSearchTime = 0;
                 SearchPlayer();
@@ -146,6 +165,12 @@ public class EnemyBehaviour : MonoBehaviour {
 
     void Invade() {
 
+    }
+
+    void Patrol() {
+        if (patrol) {
+
+        }
     }
 
     void Attack(int dir) {

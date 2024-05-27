@@ -444,6 +444,7 @@ MonoBehaviour:
   fallMultiply: 0.2
   resetWalkValue: 0.6
   jumpingSlow: 2.5
+  freio: 20
   meleeAttackRange: 4
   attackSpeed: 0.2
   attackFireRate: 0.2
@@ -511,7 +512,7 @@ MonoBehaviour:
   - alias: Ranged Attack
     clip: {fileID: 8300000, guid: 8014c01c4ec06504a94b1c44842a69dc, type: 3}
   - alias: footstep
-    clip: {fileID: 8300000, guid: 9aee40b9ba20ba04f86da266d2ce7b14, type: 3}
+    clip: {fileID: 8300000, guid: 4e8f2304874c05841b67e6b6ce7245bc, type: 3}
   - alias: jump
     clip: {fileID: 8300000, guid: 03e11b2b607abb04bb2909e1bec69b11, type: 3}
   - alias: landing

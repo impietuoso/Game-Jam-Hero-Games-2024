@@ -11,6 +11,7 @@ public class UIFollow : MonoBehaviour
         var rt = GetComponent<RectTransform>();
         RectTransform parent = (RectTransform)rt.parent;
         var vp = Camera.main.WorldToViewportPoint(target.transform.position);
+        canvas.worldCamera = Camera.main;
         var sp = canvas.worldCamera.ViewportToScreenPoint(vp);
         Vector3 worldPoint;
         RectTransformUtility.ScreenPointToWorldPointInRectangle(parent, sp, canvas.worldCamera, out worldPoint);

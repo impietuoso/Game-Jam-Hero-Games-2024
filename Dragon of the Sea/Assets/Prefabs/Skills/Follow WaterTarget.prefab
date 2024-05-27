@@ -270,7 +270,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 4
-  m_Time: 0.1
+  m_Time: 0.2
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
@@ -279,25 +279,16 @@ TrailRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.00869751
-        value: 0.40157047
-        inSlope: 1.6776928
-        outSlope: 1.6776928
+        time: 0
+        value: 0.42023197
+        inSlope: 0.1742575
+        outSlope: 0.1742575
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 0.54754716
+        outWeight: 0.22727273
       - serializedVersion: 3
-        time: 0.22092187
-        value: 0.07368469
-        inSlope: -1.5648024
-        outSlope: -1.5648024
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.37057847
-        outWeight: 0.47155854
-      - serializedVersion: 3
-        time: 0.84783936
+        time: 1
         value: 0
         inSlope: 0.14669628
         outSlope: 0.14669628
@@ -328,7 +319,7 @@ TrailRenderer:
       ctime7: 0
       atime0: 8481
       atime1: 65535
-      atime2: 65535
+      atime2: 0
       atime3: 0
       atime4: 0
       atime5: 0
@@ -345,7 +336,7 @@ TrailRenderer:
     textureScale: {x: 1, y: 1}
     shadowBias: 0.5
     generateLightingData: 0
-  m_MinVertexDistance: 0.5
+  m_MinVertexDistance: 0.1
   m_MaskInteraction: 0
   m_Autodestruct: 0
   m_Emitting: 1

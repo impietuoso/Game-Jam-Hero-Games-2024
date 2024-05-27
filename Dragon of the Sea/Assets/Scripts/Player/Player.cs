@@ -18,6 +18,7 @@ public class Player : MonoBehaviour {
     private float walkValue;
     public float resetWalkValue;
     public float jumpingSlow;
+    public float freio = 20;
 
     [Space(25)]
     public float meleeAttackRange;
@@ -209,13 +210,15 @@ public class Player : MonoBehaviour {
 
         if (context.canceled) {
             if (walkValue >= resetWalkValue && IsGrounded()) {
+                
                 isStoping = true;
                 playerAxis.x = 0;
                 anim.SetTrigger("Stop");
                 SpawnStopParticle();
                 walkDustParticle.Stop();
+                rb.velocity = new Vector2(freio, rb.velocity.y);
                 PlayerMove(context);
-            }            
+            }         
             canCountWalkValue = false;
             walkValue = 0;
         }
@@ -239,7 +242,7 @@ public class Player : MonoBehaviour {
             SpawnParticles.instance.SpawnParticle(SpawnParticles.instance.newParticle("Dust"), dustPosition.position);
         } else if (context.canceled && rb.velocity.y > 0f) {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * fallMultiply);
-            rb.gravityScale = 2;
+            rb.gravityScale = 4;
         }
     }
 
@@ -257,6 +260,7 @@ public class Player : MonoBehaviour {
         playerAxis.x = 0;
         if (context.performed) {
             if (isStoping) isStoping = false;
+            
             walkValue = 0;
             var mousePosition = Mouse.current.position.ReadValue();
             var worldMousePosition = Camera.main.ScreenToWorldPoint(mousePosition);

@@ -352,7 +352,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.025, y: 0.025}
   m_AnchorMax: {x: 0.5, y: 0.075}
-  m_AnchoredPosition: {x: -11.440063, y: 0}
+  m_AnchoredPosition: {x: -11.439941, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4111191894215127594
@@ -439,7 +439,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: 0.5201111, y: 0}
+  m_AnchoredPosition: {x: 0.5201416, y: 0}
   m_SizeDelta: {x: -8.9598, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &5279999391328679211
@@ -5634,6 +5634,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3319728509836966804}
     m_Modifications:
+    - target: {fileID: 689496424647956369, guid: 0ed222e1cf077644197c6abc105d06b6, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 8555f3eb1660ef0468533f28b50c3b2d, type: 2}
     - target: {fileID: 2813364403563848063, guid: 0ed222e1cf077644197c6abc105d06b6, type: 3}
       propertyPath: m_Name
       value: Player
@@ -5706,10 +5710,6 @@ PrefabInstance:
       propertyPath: entity
       value: 
       objectReference: {fileID: 4356204589768529577}
-    - target: {fileID: 9204072284077074402, guid: 0ed222e1cf077644197c6abc105d06b6, type: 3}
-      propertyPath: playlist.Array.data[4].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 4e8f2304874c05841b67e6b6ce7245bc, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

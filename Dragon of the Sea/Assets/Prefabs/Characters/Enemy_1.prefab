@@ -102,6 +102,37 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!1 &392047394590494625
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2072448934812297584}
+  m_Layer: 0
+  m_Name: Patrol Point 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2072448934812297584
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 392047394590494625}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -5.64, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8052569961390099383}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1566868140255215338
 GameObject:
   m_ObjectHideFlags: 0
@@ -177,6 +208,37 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &2012665525159087241
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7354335332031246103}
+  m_Layer: 0
+  m_Name: Patrol Point 2
+  m_TagString: Untagged
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7354335332031246103
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2012665525159087241}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 7.66, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8052569961390099383}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2863777264884353428
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,8 +269,10 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7395936564853519502}
-  - {fileID: 3968797712809423331}
   - {fileID: 6232500372208913902}
+  - {fileID: 3968797712809423331}
+  - {fileID: 2072448934812297584}
+  - {fileID: 7354335332031246103}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3188939026479606201
@@ -501,8 +565,8 @@ GameObject:
   - component: {fileID: 1921940821870253025}
   - component: {fileID: 6308267849820721912}
   - component: {fileID: 3068457668650872406}
-  - component: {fileID: 613726439756358667}
   - component: {fileID: 9127539165675534751}
+  - component: {fileID: 613726439756358667}
   - component: {fileID: 6016943635498749059}
   m_Layer: 6
   m_Name: Enemy
@@ -663,35 +727,6 @@ CapsuleCollider2D:
   m_Offset: {x: -0.057404667, y: -0.0067675114}
   m_Size: {x: 0.56812984, y: 1.6984468}
   m_Direction: 0
---- !u!114 &613726439756358667
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8879506280176318512}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0015ae6ce981844f927e50d736b6100, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playlist:
-  - alias: Take Damage 1
-    clip: {fileID: 8300000, guid: a3931995f665e484e9d86d0fb0f5cc77, type: 3}
-  - alias: Take Damage 2
-    clip: {fileID: 8300000, guid: e501938682cb02e4d91f597d86903ae0, type: 3}
-  - alias: Take Damage 3
-    clip: {fileID: 8300000, guid: b7fee9379216e6c49a821cca0a23e062, type: 3}
-  - alias: Take Damage 4
-    clip: {fileID: 8300000, guid: 2ece12f4e7a0e874aa128b7882217224, type: 3}
-  - alias: Death
-    clip: {fileID: 8300000, guid: 92edd4fe11749ca4c82997e28be33028, type: 3}
-  - alias: Attack
-    clip: {fileID: 8300000, guid: e7b3a9513bc59fe4e8c799a1e9bfa30d, type: 3}
-  - alias: Footsteps
-    clip: {fileID: 8300000, guid: 03e11b2b607abb04bb2909e1bec69b11, type: 3}
-  audio: {fileID: 6016943635498749059}
-  destructableAudio: 0
 --- !u!114 &9127539165675534751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -723,7 +758,38 @@ MonoBehaviour:
   playlist: {fileID: 613726439756358667}
   player: {fileID: 0}
   waitPoint: {fileID: 3968797712809423331}
+  patrolPoint1: {fileID: 2072448934812297584}
+  patrolPoint2: {fileID: 7354335332031246103}
   hpSlider: {fileID: 8309864388746724642}
+--- !u!114 &613726439756358667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8879506280176318512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0015ae6ce981844f927e50d736b6100, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playlist:
+  - alias: Take Damage 1
+    clip: {fileID: 8300000, guid: a3931995f665e484e9d86d0fb0f5cc77, type: 3}
+  - alias: Take Damage 2
+    clip: {fileID: 8300000, guid: e501938682cb02e4d91f597d86903ae0, type: 3}
+  - alias: Take Damage 3
+    clip: {fileID: 8300000, guid: b7fee9379216e6c49a821cca0a23e062, type: 3}
+  - alias: Take Damage 4
+    clip: {fileID: 8300000, guid: 2ece12f4e7a0e874aa128b7882217224, type: 3}
+  - alias: Death
+    clip: {fileID: 8300000, guid: 92edd4fe11749ca4c82997e28be33028, type: 3}
+  - alias: Attack
+    clip: {fileID: 8300000, guid: e7b3a9513bc59fe4e8c799a1e9bfa30d, type: 3}
+  - alias: Footsteps
+    clip: {fileID: 8300000, guid: 03e11b2b607abb04bb2909e1bec69b11, type: 3}
+  audio: {fileID: 6016943635498749059}
+  destructableAudio: 0
 --- !u!82 &6016943635498749059
 AudioSource:
   m_ObjectHideFlags: 0
@@ -830,9 +896,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3968797712809423331}
   m_Layer: 0
-  m_Name: WaitPoint1
+  m_Name: Wait Point
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
