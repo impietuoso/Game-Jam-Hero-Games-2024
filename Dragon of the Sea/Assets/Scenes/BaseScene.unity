@@ -2020,14 +2020,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1461052758479299633, guid: a2914cb4ffe66934891cec1616eb924e, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1461052758479299633, guid: a2914cb4ffe66934891cec1616eb924e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2863777264884353428, guid: a2914cb4ffe66934891cec1616eb924e, type: 3}
       propertyPath: m_Name
       value: Enemy_1
       objectReference: {fileID: 0}
-    - target: {fileID: 2863777264884353428, guid: a2914cb4ffe66934891cec1616eb924e, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
+    - target: {fileID: 3150059874669226152, guid: a2914cb4ffe66934891cec1616eb924e, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1353260991}
     - target: {fileID: 8052569961390099383, guid: a2914cb4ffe66934891cec1616eb924e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.8
@@ -2067,6 +2075,18 @@ PrefabInstance:
     - target: {fileID: 8052569961390099383, guid: a2914cb4ffe66934891cec1616eb924e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8666663250229516430, guid: a2914cb4ffe66934891cec1616eb924e, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8666663250229516430, guid: a2914cb4ffe66934891cec1616eb924e, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8666663250229516430, guid: a2914cb4ffe66934891cec1616eb924e, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -24030,6 +24050,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 853296381659560926, guid: e0172f31b14d1f143bfcac76b33b2ee9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -11.440186
+      objectReference: {fileID: 0}
     - target: {fileID: 3085385629099253970, guid: e0172f31b14d1f143bfcac76b33b2ee9, type: 3}
       propertyPath: m_Camera
       value: 
@@ -24097,6 +24121,10 @@ PrefabInstance:
     - target: {fileID: 4862184054309416504, guid: e0172f31b14d1f143bfcac76b33b2ee9, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5412922231259999512, guid: e0172f31b14d1f143bfcac76b33b2ee9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.5201416
       objectReference: {fileID: 0}
     - target: {fileID: 8220048969347836956, guid: e0172f31b14d1f143bfcac76b33b2ee9, type: 3}
       propertyPath: showGizmos

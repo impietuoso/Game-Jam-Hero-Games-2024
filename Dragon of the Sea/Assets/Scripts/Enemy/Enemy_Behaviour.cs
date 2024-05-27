@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyBehaviour : MonoBehaviour {
     public enum enemy_type {Patrol, Wait, Invader }
@@ -46,22 +47,27 @@ public class EnemyBehaviour : MonoBehaviour {
     private bool busy;
     private bool persuit;
     private bool invade;
+    private bool dead;
     public Transform waitPoint;
-
+    public Slider hpSlider;
 
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         playlist = GetComponent<Playlist>();
+        hpSlider.maxValue = maxLife;
+        currentLife = maxLife;
+        hpSlider.value = currentLife;
     }
 
     private void Update() {
+        if (dead) return;
         UpdateBehaviour();
 
         if(busy) {
             PersuitAndAttack();
         }
-        anim.SetFloat("speed", rb.velocity.x);
+        anim.SetFloat("speed",MathF.Abs(rb.velocity.x));
     }
 
     void UpdateBehaviour() {
@@ -102,6 +108,7 @@ public class EnemyBehaviour : MonoBehaviour {
         Collider2D target = Physics2D.OverlapCircle(transform.position, searchRadious, playerLayer);
         if (target == null) return;
         player = target.transform;
+        playlist.PlaySFX("Alert");
         busy = true;
         DoAction();
     }
@@ -143,6 +150,7 @@ public class EnemyBehaviour : MonoBehaviour {
 
     void Attack(int dir) {
         anim.SetTrigger("Attack");
+        playlist.PlaySFX("Attack");
         GameObject bullet = Instantiate(projectile, shotPosition.position, Quaternion.identity);
         GameObject fire = Instantiate(fireEffect, shotPosition.position, Quaternion.identity);
         bullet.transform.localScale = new Vector2(dir, 1);
@@ -157,5 +165,42 @@ public class EnemyBehaviour : MonoBehaviour {
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(transform.position, attackRadious);
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D col) {
+        if (dead) return;
+        if (col.tag == "WaterBall") {
+            TakeDamage(col);
+        }
+    }
+
+    public void TakeDamage(Collider2D col) {
+        var damage = 1;
+        if (currentLife - damage <= 0) {
+            Death();
+        } else {
+            currentLife -= damage;
+            SelectTakeDamageSound();
+            anim.SetTrigger("Take Damage");
+        }
+        hpSlider.value = currentLife;
+    }
+
+    void Death() {
+        dead = true;
+        currentLife = 0;
+        playlist.PlaySFX("Death");
+        anim.SetTrigger("Death");
+        rb.velocity = Vector2.zero;
+    }
+
+    void SelectTakeDamageSound() {
+        var id = UnityEngine.Random.Range(1, 5);
+        if (id > 4) id = 4;
+        playlist.PlaySFX("Take Damage " + id);
+    }
+
+    public void RemoveEnemy() {
+        Destroy(gameObject.transform.parent.gameObject, 1.5f);
     }
 }
