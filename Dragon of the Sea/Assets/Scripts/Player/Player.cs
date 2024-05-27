@@ -31,7 +31,7 @@ public class Player : MonoBehaviour {
     public float currentComboTime;
     public float minWaterBallSize;
     public float maxWaterBallSize;
-    private float currentWaterBallSize;
+    private float currentWaterBallSize = 1.1f;
     public float waterBallIncreaseValue;
     public float waterSpendValue;
 
@@ -274,7 +274,10 @@ public class Player : MonoBehaviour {
         if (context.performed) DOTween.ToAlpha(() => meleeArea.color, color => meleeArea.color = color, meleeAttackAreaAlpha, meleeAttackAreaSpeedDelay);
         if (context.canceled) DOTween.ToAlpha(() => meleeArea.color, color => meleeArea.color = color, 0, meleeAttackAreaSpeedDelay);
 
-        if (currentWaterBallSize < minWaterBallSize + waterSpendValue) return;
+        if (currentWaterBallSize <= minWaterBallSize) {
+            VsnController.instance.StartVSN("no_water");
+            return;
+        }
         playerAxis.x = 0;
         if (context.performed) {
             if (isStoping) isStoping = false;
@@ -419,10 +422,12 @@ public class Player : MonoBehaviour {
     }
 
     public void SpendWater() {
-        if (currentWaterBallSize - waterSpendValue >= minWaterBallSize)
+        if (currentWaterBallSize - waterSpendValue >= minWaterBallSize) {
             currentWaterBallSize -= waterSpendValue;
-        else if (currentWaterBallSize < minWaterBallSize)
+        }
+        else if (currentWaterBallSize - waterSpendValue < minWaterBallSize) {
             currentWaterBallSize = minWaterBallSize;
+        }
         waterBall.transform.localScale = Vector2.one * currentWaterBallSize;
     }
 

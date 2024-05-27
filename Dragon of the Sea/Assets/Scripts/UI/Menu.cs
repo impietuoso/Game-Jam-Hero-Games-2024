@@ -23,7 +23,6 @@ public class Menu : MonoBehaviour {
                 VsnController.instance.StartVSN("loading_island");
                 break;
         }
-
     }
 
     public void ExitGame() {
