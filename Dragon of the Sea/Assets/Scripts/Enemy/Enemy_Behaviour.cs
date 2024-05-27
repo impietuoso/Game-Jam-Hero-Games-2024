@@ -13,12 +13,12 @@ public class EnemyBehaviour : MonoBehaviour {
     private Rigidbody2D rb;
     private Animator anim;
 
-    [Space(20)]
+    [Space(15)]
     [Header("Life")]
     public int maxLife;
     private int currentLife;
 
-    [Space(20)]
+    [Space(15)]
     [Header("Combat")]
     public int damage;
     [Range(0, 20)]
@@ -30,7 +30,7 @@ public class EnemyBehaviour : MonoBehaviour {
     public GameObject fireEffect;
     public Transform shotPosition;
 
-    [Space(20)]
+    [Space(15)]
     [Header("Movement")]
     public float speed;
     [Range(0,25)]
@@ -38,8 +38,9 @@ public class EnemyBehaviour : MonoBehaviour {
     public float searchTime;
     private float currentSearchTime;
     public LayerMask playerLayer;
+    public float impulseForce;
 
-    [Space(20)]
+    [Space(15)]
     [Header("Extra")]
     public Playlist playlist;
     [SerializeField] private Transform player;
@@ -67,9 +68,10 @@ public class EnemyBehaviour : MonoBehaviour {
 
     private void Update() {
         if (dead) return;
-        UpdateBehaviour();
+        if (type == enemy_type.Invader) InvaderBehaviour();
+        else UpdateBehaviour();
 
-        if(busy) {
+        if (busy) {
             PersuitAndAttack();
         }
         anim.SetFloat("speed",MathF.Abs(rb.velocity.x));
@@ -119,6 +121,23 @@ public class EnemyBehaviour : MonoBehaviour {
                 if (invade) invade = false;
                 if (busy) busy = false;                
             }
+        }
+    }
+
+    void InvaderBehaviour() {
+        if (player == null) player = Player.instance.transform;
+        playerDistance = player.position.x - transform.position.x;
+        var dir = playerDistance >= 0 ? 1 : -1;
+        if (Mathf.Abs(playerDistance) <= attackRadious) {
+            if (rb.velocity.x != 0) rb.velocity = Vector2.zero;
+            currentAttackTime += Time.deltaTime;
+            transform.localScale = new Vector2(dir, 1);
+            if (currentAttackTime > attackFireRate) {
+                currentAttackTime = 0;
+                Attack(dir);
+            }
+        } else {
+            rb.velocity = new Vector2(speed * dir, 0);
         }
     }
 
@@ -180,6 +199,9 @@ public class EnemyBehaviour : MonoBehaviour {
         GameObject fire = Instantiate(fireEffect, shotPosition.position, Quaternion.identity);
         bullet.transform.localScale = new Vector2(dir, 1);
         fire.transform.localScale = new Vector2(dir, 1);
+        if (bullet.TryGetComponent<DamageHolder>(out DamageHolder holder)) {
+            holder.damage = damage;
+        }
         bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(shotSpeed * dir, 0);
     }
 
@@ -195,15 +217,20 @@ public class EnemyBehaviour : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D col) {
         if (dead) return;
         if (col.tag == "WaterBall") {
-            TakeDamage(col);
+            if (col.TryGetComponent<DamageHolder>(out DamageHolder holder)) {
+                if(holder.canDealDamage) TakeDamage(holder.damage);
+            }
         }
     }
 
-    public void TakeDamage(Collider2D col) {
-        var damage = 1;
+    public void TakeDamage(int damage) {
+        if (dead) return;
+        currentAttackTime = 0;
         if (currentLife - damage <= 0) {
             Death();
         } else {
+            SpawnParticles.instance.SpawnParticle("Hit1", transform.position);
+            Impulse();
             currentLife -= damage;
             SelectTakeDamageSound();
             anim.SetTrigger("Take Damage");
@@ -211,12 +238,21 @@ public class EnemyBehaviour : MonoBehaviour {
         hpSlider.value = currentLife;
     }
 
+    private void Impulse() {
+        if (dead) return;
+        var distance = transform.position.x - Player.instance.transform.position.x;
+        var direction = distance >= 0 ? 1 : -1;
+        rb.velocity = Vector2.zero;
+        rb.AddForce(new Vector2 (direction * speed * impulseForce, 0));
+    }
+
     void Death() {
+        SpawnParticles.instance.SpawnParticle("Blood", transform.position);
         dead = true;
+        rb.velocity = Vector2.zero;
         currentLife = 0;
         playlist.PlaySFX("Death");
         anim.SetTrigger("Death");
-        rb.velocity = Vector2.zero;
     }
 
     void SelectTakeDamageSound() {
@@ -226,6 +262,6 @@ public class EnemyBehaviour : MonoBehaviour {
     }
 
     public void RemoveEnemy() {
-        Destroy(gameObject.transform.parent.gameObject, 1.5f);
+        Destroy(gameObject.transform.parent.gameObject, 2.5f);
     }
 }

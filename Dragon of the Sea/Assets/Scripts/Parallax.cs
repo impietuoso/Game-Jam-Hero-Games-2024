@@ -1,13 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Parallax : MonoBehaviour {
     private float length;
     private Vector2 StartPos;
     private Transform cam;
-
     public float ParallaxEffect;
+
     void Start() {
         StartPos.x = transform.position.x;
         StartPos.y = transform.position.y;

@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 5372600476053827819}
   - component: {fileID: 2442305286301657285}
   - component: {fileID: 3573990006480712762}
+  - component: {fileID: 2913289798889561466}
   - component: {fileID: 3562258943796493279}
   m_Layer: 0
   m_Name: Water Projectile
@@ -384,6 +385,20 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 5d29bcdb4f25cdb4589d3a9b2a98fe2f, type: 3}
   audio: {fileID: 3562258943796493279}
   destructableAudio: 1
+--- !u!114 &2913289798889561466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 615953023352198370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd85b387532d7f04f8e7224a5b0cb956, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0
+  canDealDamage: 1
 --- !u!82 &3562258943796493279
 AudioSource:
   m_ObjectHideFlags: 0

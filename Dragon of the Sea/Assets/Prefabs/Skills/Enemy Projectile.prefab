@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1630778302132562759}
   - component: {fileID: 9049388774831628515}
   - component: {fileID: 397578341077722113}
+  - component: {fileID: 8497233169326931760}
   - component: {fileID: 6633206475731958143}
   m_Layer: 7
   m_Name: Enemy Projectile
@@ -253,6 +254,20 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: e7b3a9513bc59fe4e8c799a1e9bfa30d, type: 3}
   audio: {fileID: 6633206475731958143}
   destructableAudio: 1
+--- !u!114 &8497233169326931760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6542129852504857961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd85b387532d7f04f8e7224a5b0cb956, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0
+  canDealDamage: 1
 --- !u!82 &6633206475731958143
 AudioSource:
   m_ObjectHideFlags: 0

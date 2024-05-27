@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-using UnityEngine.Windows;
 
 public class Player : MonoBehaviour {
 
@@ -20,7 +19,7 @@ public class Player : MonoBehaviour {
     public float jumpingSlow;
     public float freio = 20;
 
-    [Space(25)]
+    [Space(15)]
     public float meleeAttackRange;
     public float attackSpeed;
     public float attackFireRate;
@@ -36,13 +35,13 @@ public class Player : MonoBehaviour {
     public float waterBallIncreaseValue;
     public float waterSpendValue;
 
-    [Space(25)]
+    [Space(15)]
     public int mouseCursor;
     public int maxPlayerHp;
     private int currentPlayerHp;
     public int playerDamage;
 
-    [Space(25)]
+    [Space(15)]
     public bool facingRight;
     private bool isAttacking;
     private bool jumping;
@@ -53,7 +52,7 @@ public class Player : MonoBehaviour {
     public bool showGizmos;
     private bool dead;
 
-    [Space(25)]
+    [Space(15)]
     public LayerMask groundLayer;
     public Transform groundCheck;
     public Transform dustPosition;
@@ -65,7 +64,7 @@ public class Player : MonoBehaviour {
     public Slider waterSlider;
     public Slider hpSlider;
 
-    [Space(25)]
+    [Space(15)]
     public GameObject waterBall;
     public GameObject waterProjectile;
 
@@ -239,7 +238,7 @@ public class Player : MonoBehaviour {
             playlist.PlaySFX("jump");
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             rb.gravityScale = 4;
-            SpawnParticles.instance.SpawnParticle(SpawnParticles.instance.newParticle("Dust"), dustPosition.position);
+            SpawnParticles.instance.SpawnParticle("Dust", dustPosition.position);
         } else if (context.canceled && rb.velocity.y > 0f) {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * fallMultiply);
             rb.gravityScale = 4;
@@ -272,7 +271,6 @@ public class Player : MonoBehaviour {
     }
 
     private void MeleeAttack(float dir) {
-        Debug.Log("Melee Attack");
         countComboResetTime = true;
         currentComboTime = 0;
         if (comboID == 3) comboID = 1;
@@ -285,6 +283,9 @@ public class Player : MonoBehaviour {
 
     private IEnumerator MeleeWaterballAttack(float dir) {
         SpendWater();
+        if (waterBall.TryGetComponent<DamageHolder>(out DamageHolder holder)) {
+            holder.damage = playerDamage;
+        }
         TrailRenderer trail = waterBall.GetComponent<TrailRenderer>();
         PositionConstraint ball = waterBall.GetComponent<PositionConstraint>();
         trail.enabled = true;
@@ -307,7 +308,6 @@ public class Player : MonoBehaviour {
     }
 
     public void RangedAttack() {
-        Debug.Log("Ranged Attack");
         isAttacking = true;
         anim.SetTrigger("RangedAttack");
     }
@@ -316,6 +316,10 @@ public class Player : MonoBehaviour {
         SpendWater();
         GameObject newProjectile = Instantiate(waterProjectile, waterBall.transform.position, Quaternion.identity);
         newProjectile.transform.localScale = newProjectile.transform.localScale * currentWaterBallSize;
+
+        if (newProjectile.TryGetComponent<DamageHolder>(out DamageHolder holder)) {
+            holder.damage = playerDamage * (int)newProjectile.transform.localScale.x;
+        }
 
         var mousePosition = Mouse.current.position.ReadValue();
         var worldMousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
@@ -394,11 +398,11 @@ public class Player : MonoBehaviour {
     }
 
     public void SpawnStopParticle() {
-        SpawnParticles.instance.SpawnParticle(SpawnParticles.instance.newParticle("Stop"), stopPosition.position, transform.localScale.x);
+        SpawnParticles.instance.SpawnParticle("Stop", stopPosition.position, transform.localScale.x);
     }
 
     public void SpawnJumpParticle() {
-        SpawnParticles.instance.SpawnParticle(SpawnParticles.instance.newParticle("Dust2"), dustPosition.position, transform.localScale.x);
+        SpawnParticles.instance.SpawnParticle("Dust2", dustPosition.position, transform.localScale.x);
     }
 
     private void OnCollisionEnter2D(Collision2D col) {
@@ -418,7 +422,9 @@ public class Player : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D col) {
         if (col.tag == "Enemy_Projectile") {
-            TakeDamage();
+            if (col.TryGetComponent<DamageHolder>(out DamageHolder holder)) {
+                if (holder.canDealDamage) TakeDamage(holder.damage);
+            }
         }
     }
 
@@ -438,13 +444,13 @@ public class Player : MonoBehaviour {
         return grounded;
     }
 
-    public void TakeDamage() {
-        var damage = 1;
+    public void TakeDamage(int damage) {
         if(currentPlayerHp - damage <= 0) {
             Death();
         } else {
             currentPlayerHp -= damage;
             SelectTakeDamageSound();
+            SpawnParticles.instance.SpawnParticle("Hit2", transform.position);
             anim.SetTrigger("Take Damage");
         }
         hpSlider.value = currentPlayerHp;
@@ -454,6 +460,7 @@ public class Player : MonoBehaviour {
         dead = true;
         ChangeMouseCursor.instance.SetNormalMouse();
         currentPlayerHp = 0;
+        SpawnParticles.instance.SpawnParticle("Blood", transform.position);
         playlist.PlaySFX("Death");
         anim.SetTrigger("Death");
         playerAxis.x = 0;
@@ -467,6 +474,18 @@ public class Player : MonoBehaviour {
         var id = Random.Range(1,4);
         if (id > 3) id = 3;
         playlist.PlaySFX("Take Damage " + id);
+    }
+
+    public void ActiveMeleeDamate() {
+        if (waterBall.TryGetComponent<DamageHolder>(out DamageHolder holder)) {
+            holder.canDealDamage = true;
+        }
+    }
+
+    public void DisableMeleeDamate() {
+        if (waterBall.TryGetComponent<DamageHolder>(out DamageHolder holder)) {
+            holder.canDealDamage = false;
+        }
     }
 
 }

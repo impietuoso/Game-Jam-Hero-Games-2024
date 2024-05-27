@@ -315,8 +315,22 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.1
+    functionName: ActiveMeleeDamate
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.1
     functionName: PlaySFX
     data: Melee Attack 2
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.3
+    functionName: DisableMeleeDamate
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
