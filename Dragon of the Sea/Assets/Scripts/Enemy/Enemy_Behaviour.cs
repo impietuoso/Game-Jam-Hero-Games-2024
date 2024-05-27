@@ -56,6 +56,9 @@ public class EnemyBehaviour : MonoBehaviour {
     public Transform patrolPoint2;
     public Slider hpSlider;
 
+    public bool stunned;
+    public float stunTime;
+
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
@@ -68,6 +71,7 @@ public class EnemyBehaviour : MonoBehaviour {
 
     private void Update() {
         if (dead) return;
+        if (stunned) return;
         if (type == enemy_type.Invader) InvaderBehaviour();
         else UpdateBehaviour();
 
@@ -210,6 +214,7 @@ public class EnemyBehaviour : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D col) {
         if (dead) return;
+        if (stunned) return;
         if (col.tag == "PlayerHitBox") {
             if (col.TryGetComponent<DamageHolder>(out DamageHolder holder)) {
                 if(holder.canDealDamage) TakeDamage(holder.damage);
@@ -228,8 +233,15 @@ public class EnemyBehaviour : MonoBehaviour {
             currentLife -= damage;
             SelectTakeDamageSound();
             anim.SetTrigger("Take Damage");
+            StartCoroutine(Stun());
         }
         hpSlider.value = currentLife;
+    }
+
+    IEnumerator Stun() {
+        stunned = true;
+        yield return new WaitForSeconds(stunTime);
+        stunned = false;
     }
 
     private void Impulse() {
@@ -238,7 +250,7 @@ public class EnemyBehaviour : MonoBehaviour {
         var distance = transform.position.x - Player.instance.transform.position.x;
         var direction = distance >= 0 ? 1 : -1;
         rb.velocity = Vector2.zero;
-        rb.AddForce(new Vector2(direction * speed * impulseForce * 100, 100), ForceMode2D.Force);
+        rb.AddForce(new Vector2(direction * speed * impulseForce, 100), ForceMode2D.Force);
     }
 
     void Death() {
