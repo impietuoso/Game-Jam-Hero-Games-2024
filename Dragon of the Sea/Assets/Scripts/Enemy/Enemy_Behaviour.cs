@@ -269,12 +269,15 @@ public class EnemyBehaviour : MonoBehaviour {
     }
 
     void Death() {
+        Spawn.instance.RemoveEnemy(gameObject);
         SpawnParticles.instance.SpawnParticle("Blood", transform.position);
         int chance = UnityEngine.Random.Range(0,101);
         if(type == enemy_type.Invader) if(chance <= chanceDeDrop) SpawnParticles.instance.SpawnParticle("Cura", transform.position);
         dead = true;
         rb.velocity = Vector2.zero;
         currentLife = 0;
+        rb.gravityScale = 0;
+        GetComponent<Collider2D>().enabled = false;
         playlist.PlaySFX("Death");
         anim.SetTrigger("Death");
     }
@@ -293,7 +296,4 @@ public class EnemyBehaviour : MonoBehaviour {
         Destroy(gameObject.transform.parent.gameObject, 2.5f);
     }
 
-    private void OnDestroy() {
-        Spawn.instance.RemoveEnemy(gameObject);
-    }
 }

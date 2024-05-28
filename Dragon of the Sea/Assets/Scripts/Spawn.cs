@@ -80,7 +80,8 @@ public class Spawn : MonoBehaviour {
     }
 
     void NextWave() {
-        if (currentWave < waves.Count) {
+        lastEnemy.Clear();
+        if (currentWave < waves.Count -1) {
             currentWave++;
             StartCoroutine(WaitngForTheNextWave(waves[currentWave].timeUntilNextWave));
         } else {
@@ -104,11 +105,11 @@ public class Spawn : MonoBehaviour {
             int randomType = UnityEngine.Random.Range(0, waves[currentWave].enemy_types.Count);
             GameObject newObj = Instantiate(waves[currentWave].enemy_types[randomType], spawnPoint.position, Quaternion.identity);
             TryVelocity(newObj);
-            if(waitingForLastEnemy) lastEnemy.Add(newObj);
+            lastEnemy.Add(newObj);
         } else {
             GameObject newObj = Instantiate(waves[currentWave].enemy_types[0], spawnPoint.position, Quaternion.identity);
             TryVelocity(newObj);
-            if (waitingForLastEnemy) lastEnemy.Add(newObj);
+            lastEnemy.Add(newObj);
         }
         currentSpawnedObject++;
     }
@@ -124,7 +125,7 @@ public class Spawn : MonoBehaviour {
     }
 
     public void RemoveEnemy(GameObject enemy) {
-        if (lastEnemy.Contains(enemy)) lastEnemy.Remove(enemy);
+        if (lastEnemy.Contains(enemy)) lastEnemy.Remove(enemy);    
     }
 }
 

@@ -18568,6 +18568,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: InvasionSpawner
       objectReference: {fileID: 0}
+    - target: {fileID: 5628976622763065817, guid: 14913d9830ea751488ff1b1195dfe24c, type: 3}
+      propertyPath: waves.Array.data[1].timeUntilNextWave
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5628976622763065817, guid: 14913d9830ea751488ff1b1195dfe24c, type: 3}
+      propertyPath: waves.Array.data[2].timeUntilNextWave
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8374144465415679187, guid: 14913d9830ea751488ff1b1195dfe24c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 40.17
