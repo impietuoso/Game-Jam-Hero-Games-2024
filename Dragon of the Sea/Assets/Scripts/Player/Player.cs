@@ -102,6 +102,7 @@ public class Player : MonoBehaviour {
         uiActionMap = input.actions.FindActionMap("UI");
         currentPlayerHp = maxPlayerHp;
         hpSlider.value = currentPlayerHp;
+        Objetive();
     }
 
     void Update() {
@@ -321,9 +322,9 @@ public class Player : MonoBehaviour {
         PositionConstraint ball = waterBall.GetComponent<PositionConstraint>();
         trail.enabled = true;
         DOTween.To(() => ball.weight, (v) => ball.weight = v, 1, attackSpeed);
-        playerAxis.x = dir;
+        playerAxis.x = dir * stepDistance;
         walkDustParticle.Play();
-        yield return new WaitForSeconds(attackSpeed);
+        yield return new WaitForSeconds(stepStopTime);
         playerAxis.x = 0;
         yield return new WaitForSeconds(attackFireRate);
         walkDustParticle.Stop();
@@ -557,4 +558,11 @@ public class Player : MonoBehaviour {
         save.Reset();
     }
 
+    public void ChangeObjetive(string nextObjective) {
+        save.objective = nextObjective;
+    }
+
+    public void Objetive() {
+        objectiveText.text = save.objective;
+    }
 }

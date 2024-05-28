@@ -16,7 +16,7 @@ public class Spawn : MonoBehaviour {
     public float timeUntilBeginWave;
     public TextMeshProUGUI timeText;
     public GameObject boss;
-    public GameObject lastEnemy;
+    public List<GameObject> lastEnemy = new();
     public bool waitingForLastEnemy;
     private bool ending;
 
@@ -32,22 +32,30 @@ public class Spawn : MonoBehaviour {
     void Update()
     {
         if(waitingForLastEnemy) {
-            if(lastEnemy != null && !ending) {
+            if(lastEnemy.Count > 0) {
+                foreach (var item in lastEnemy) {
+                    if (item == null) lastEnemy.Remove(item);
+                }
+            }
+            
+
+            if(lastEnemy.Count == 0 && !ending) {
                 ending = true;
                 Player.instance.StopPlayer();
                 VsnController.instance.StartVSN("GameWin");
             }
         }
 
-        if (timeUntilBeginWave > 0) {
+        if (timeUntilBeginWave > 0 && currentWave < waves.Count) {
             timeUntilBeginWave -= Time.deltaTime;
-            timeText.text = "Next Wave In: " + (int)timeUntilBeginWave;
-        }
+            timeText.text = "Próxima Invasão em: " + (int)timeUntilBeginWave;
+        } else timeText.text = "Derrote Todos os Inimigos";
+
         if (timeUntilBeginWave < 0) timeUntilBeginWave = 0;
 
         if (canSpawn) {
             currentSpawnTime += Time.deltaTime;
-            timeText.text = "Next Wave In: " + (int)(waves[currentWave].timeUntilNextWave - currentSpawnTime);
+            timeText.text = "Próxima Invasão em" + (int)(waves[currentWave].timeUntilNextWave - currentSpawnTime);
             if (currentSpawnTime >= spawnFireRate) {
                 TrySpawn();
             }
@@ -99,11 +107,11 @@ public class Spawn : MonoBehaviour {
             int randomType = UnityEngine.Random.Range(0, waves[currentWave].enemy_types.Count);
             GameObject newObj = Instantiate(waves[currentWave].enemy_types[randomType], spawnPoint.position, Quaternion.identity);
             TryVelocity(newObj);
-            lastEnemy = newObj;
+            lastEnemy.Add(newObj);
         } else {
             GameObject newObj = Instantiate(waves[currentWave].enemy_types[0], spawnPoint.position, Quaternion.identity);
             TryVelocity(newObj);
-            lastEnemy = newObj;
+            lastEnemy.Add(newObj);
         }
         currentSpawnedObject++;
     }

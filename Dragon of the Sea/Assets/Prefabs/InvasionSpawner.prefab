@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed63aafffce3daf4fa1a31b4bdcb6835, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  final: 1
   waves:
   - enemy_types:
     - {fileID: 4257057478405804390, guid: a821b46bd27c1c340b5b647f37a532b3, type: 3}
@@ -59,10 +60,12 @@ MonoBehaviour:
     - {fileID: 4257057478405804390, guid: a821b46bd27c1c340b5b647f37a532b3, type: 3}
     numberOfEnemies: 7
     timeUntilNextWave: 25
-  spawnFireRate: 0.5
+  spawnFireRate: 2
   timeUntilBeginWave: 10
   timeText: {fileID: 4563091561838235976}
   boss: {fileID: 1033302008981892691, guid: 4d21f1b3f5133f94382b5ccd9b225461, type: 3}
+  lastEnemy: {fileID: 0}
+  waitingForLastEnemy: 0
   currentWave: 0
   canSpawn: 0
   spawnPoint: {fileID: 8374144465415679187}

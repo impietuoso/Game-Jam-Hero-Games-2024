@@ -722,11 +722,11 @@ MonoBehaviour:
   resetWalkValue: 0.6
   jumpingSlow: 2.5
   freio: 20
-  meleeAttackRange: 4
+  meleeAttackRange: 5
   attackSpeed: 0.2
   attackFireRate: 0.2
   projectileSpeed: 37
-  stepDistance: 0.1
+  stepDistance: 0.2
   stepStopTime: 0.2
   resetComboTime: 1.75
   currentComboTime: 0
@@ -759,6 +759,8 @@ MonoBehaviour:
   meleeArea: {fileID: 2045598917946692941}
   meleeAttackAreaAlpha: 0.6
   meleeAttackAreaSpeedDelay: 0.2
+  objectiveText: {fileID: 0}
+  save: {fileID: 0}
 --- !u!114 &9065556613355431157
 MonoBehaviour:
   m_ObjectHideFlags: 0

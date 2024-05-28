@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Save
   m_EditorClassIdentifier: 
   rescuedVillagers: 0
-  maxRescuredVillagers: 8
+  maxRescuredVillagers: 10
   rescueComplete: 0
+  objective: '<b>Objetivos: </b> \nSiga ao Porto'

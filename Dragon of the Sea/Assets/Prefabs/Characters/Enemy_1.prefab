@@ -5589,7 +5589,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 3
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 4
@@ -5653,7 +5653,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   showGizmo: 1
-  maxLife: 30
+  maxLife: 20
   damage: 1
   attackRadious: 7.5
   attackFireRate: 1.2
@@ -5667,7 +5667,7 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 256
-  impulseForce: {x: 4, y: 4}
+  impulseForce: {x: 4.2, y: 9}
   playlist: {fileID: 613726439756358667}
   player: {fileID: 0}
   waitPoint: {fileID: 3968797712809423331}
@@ -5675,7 +5675,7 @@ MonoBehaviour:
   patrolPoint2: {fileID: 7354335332031246103}
   hpSlider: {fileID: 8309864388746724642}
   stunned: 0
-  stunTime: 0.5
+  stunTime: 0.2
   groundCheck: {fileID: 2005825186197124189}
   groundLayer:
     serializedVersion: 2

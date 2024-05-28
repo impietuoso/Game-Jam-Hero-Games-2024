@@ -23,6 +23,8 @@ public class Ally : MonoBehaviour {
     int currentHappiness;
     int maxHappy = 3;
 
+    public Canvas c;
+
     private void Awake() {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
@@ -31,6 +33,7 @@ public class Ally : MonoBehaviour {
     private void Start() {
         playerTarget = Player.instance.transform;
         if(mode == ally_mode.Locked) Lock();
+        if (c != null) c.worldCamera = Camera.main;
     }
 
     void Update() {

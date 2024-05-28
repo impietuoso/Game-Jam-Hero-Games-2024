@@ -264,7 +264,7 @@ public class EnemyBehaviour : MonoBehaviour {
         var distance = transform.position.x - Player.instance.transform.position.x;
         var direction = distance >= 0 ? 1 : -1;
         rb.velocity = Vector2.zero;
-        rb.AddForce(new Vector2(direction * speed * impulseForce.x, impulseForce.y), ForceMode2D.Force);
+        rb.AddForce(new Vector2(direction * speed * impulseForce.x * 10, impulseForce.y * 100), ForceMode2D.Force);
     }
 
     void Death() {
