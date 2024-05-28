@@ -47,17 +47,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waves:
   - enemy_types:
-    - {fileID: 615953023352198370, guid: 7fa461349ae1b374ca3c9a7f5c052a16, type: 3}
-    numberOfEnemies: 2
-    timeUntilNextWave: 1
+    - {fileID: 4257057478405804390, guid: a821b46bd27c1c340b5b647f37a532b3, type: 3}
+    numberOfEnemies: 3
+    timeUntilNextWave: 10
   - enemy_types:
-    - {fileID: 6542129852504857961, guid: 26c48e0ad8618ae48bd40ad688654ee0, type: 3}
+    - {fileID: 4257057478405804390, guid: a821b46bd27c1c340b5b647f37a532b3, type: 3}
     numberOfEnemies: 5
-    timeUntilNextWave: 1
+    timeUntilNextWave: 15
   - enemy_types:
-    - {fileID: 468616957246744719, guid: 9c295f2b14e302c4ca8b7d0da4836e82, type: 3}
-    numberOfEnemies: 5
-    timeUntilNextWave: 1
+    - {fileID: 4257057478405804390, guid: a821b46bd27c1c340b5b647f37a532b3, type: 3}
+    numberOfEnemies: 7
+    timeUntilNextWave: 25
   spawnFireRate: 0.5
   currentWave: 0
   canSpawn: 0

@@ -260,11 +260,6 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
---- !u!1 &1075689477 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1440167999807845276, guid: 125471408dc928c4ba4feff9629b03a7, type: 3}
-  m_PrefabInstance: {fileID: 1312679130}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1312679130
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -441,10 +436,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3138186907572139767, guid: 125471408dc928c4ba4feff9629b03a7, type: 3}
-      propertyPath: nextMenu
-      value: 
-      objectReference: {fileID: 1075689477}
     - target: {fileID: 3388628094011119842, guid: 125471408dc928c4ba4feff9629b03a7, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -940,14 +931,6 @@ PrefabInstance:
     - target: {fileID: 8054350422658057039, guid: 125471408dc928c4ba4feff9629b03a7, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8078233555624491375, guid: 125471408dc928c4ba4feff9629b03a7, type: 3}
-      propertyPath: m_Alpha
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8078233555624491375, guid: 125471408dc928c4ba4feff9629b03a7, type: 3}
-      propertyPath: m_BlocksRaycasts
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8159225586554393415, guid: 125471408dc928c4ba4feff9629b03a7, type: 3}
       propertyPath: m_AnchorMax.y

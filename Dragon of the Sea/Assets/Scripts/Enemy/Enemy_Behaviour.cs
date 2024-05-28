@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class EnemyBehaviour : MonoBehaviour {
@@ -59,6 +60,9 @@ public class EnemyBehaviour : MonoBehaviour {
     public bool stunned;
     public float stunTime;
 
+    public Transform groundCheck;
+    public LayerMask groundLayer;
+
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
@@ -72,6 +76,7 @@ public class EnemyBehaviour : MonoBehaviour {
     private void Update() {
         if (dead) return;
         if (stunned) return;
+        if (IsGrounded() == false) return;
         if (type == enemy_type.Invader) InvaderBehaviour();
         else UpdateBehaviour();
 
@@ -209,6 +214,8 @@ public class EnemyBehaviour : MonoBehaviour {
             Gizmos.DrawWireSphere(transform.position, searchRadious);
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(transform.position, attackRadious);
+            Gizmos.color = Color.blue;
+            Gizmos.DrawSphere(groundCheck.position, 0.1f);
         }
     }
 
@@ -266,6 +273,11 @@ public class EnemyBehaviour : MonoBehaviour {
         var id = UnityEngine.Random.Range(1, 5);
         if (id > 4) id = 4;
         playlist.PlaySFX("Take Damage " + id);
+    }
+
+    private bool IsGrounded() {
+
+        return Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer); ;
     }
 
     public void RemoveEnemy() {

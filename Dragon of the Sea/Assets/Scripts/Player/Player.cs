@@ -522,4 +522,11 @@ public class Player : MonoBehaviour {
         }
     }
 
+    public void StopPlayer() {
+        isStoping = true;
+        playerAxis.x = 0;
+        rb.velocity = Vector2.zero;
+        enabled = false;
+    }
+
 }

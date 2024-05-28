@@ -343,6 +343,37 @@ RectTransform:
   m_AnchoredPosition: {x: 0.5201416, y: 0}
   m_SizeDelta: {x: -8.9598, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &4142666559052175749
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2005825186197124189}
+  m_Layer: 6
+  m_Name: GroundCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2005825186197124189
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4142666559052175749}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7395936564853519502}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4260811559892558300
 GameObject:
   m_ObjectHideFlags: 0
@@ -5156,13 +5187,15 @@ ParticleSystemRenderer:
   m_RenderAlignment: 0
   m_Pivot: {x: 0, y: 0, z: 0}
   m_Flip: {x: 0, y: 0, z: 0}
-  m_UseCustomVertexStreams: 0
   m_EnableGPUInstancing: 1
   m_ApplyActiveColorSpace: 1
   m_AllowRoll: 1
   m_FreeformStretching: 0
   m_RotateWithStretchDirection: 1
+  m_UseCustomVertexStreams: 0
   m_VertexStreams: 00010304
+  m_UseCustomTrailVertexStreams: 0
+  m_TrailVertexStreams: 00010304
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
@@ -5468,6 +5501,7 @@ Transform:
   - {fileID: 1688849216248966873}
   - {fileID: 5619899637267217977}
   - {fileID: 8108385345938096505}
+  - {fileID: 2005825186197124189}
   m_Father: {fileID: 8052569961390099383}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8666663250229516430
@@ -5618,7 +5652,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
-  showGizmo: 0
+  showGizmo: 1
   maxLife: 30
   damage: 1
   attackRadious: 7.5
@@ -5640,6 +5674,12 @@ MonoBehaviour:
   patrolPoint1: {fileID: 2072448934812297584}
   patrolPoint2: {fileID: 7354335332031246103}
   hpSlider: {fileID: 8309864388746724642}
+  stunned: 0
+  stunTime: 0.5
+  groundCheck: {fileID: 2005825186197124189}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!114 &613726439756358667
 MonoBehaviour:
   m_ObjectHideFlags: 0
