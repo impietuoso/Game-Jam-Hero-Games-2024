@@ -496,6 +496,7 @@ public class Player : MonoBehaviour {
         if (currentPlayerHp - damage <= 0) {
             Death();
         } else {
+            CameraShake.instance.Shake();
             currentPlayerHp -= damage;
             SelectTakeDamageSound();
             SpawnParticles.instance.SpawnParticle("Hit2", transform.position);

@@ -5667,7 +5667,7 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 256
-  impulseForce: 3.8
+  impulseForce: {x: 4, y: 4}
   playlist: {fileID: 613726439756358667}
   player: {fileID: 0}
   waitPoint: {fileID: 3968797712809423331}

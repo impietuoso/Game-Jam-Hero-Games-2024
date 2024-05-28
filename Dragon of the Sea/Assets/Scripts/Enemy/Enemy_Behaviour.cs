@@ -39,7 +39,7 @@ public class EnemyBehaviour : MonoBehaviour {
     public float searchTime;
     private float currentSearchTime;
     public LayerMask playerLayer;
-    public float impulseForce;
+    public Vector2 impulseForce;
 
     [Space(15)]
     [Header("Extra")]
@@ -241,6 +241,7 @@ public class EnemyBehaviour : MonoBehaviour {
         if (currentLife - damage <= 0) {
             Death();
         } else {
+            CameraShake.instance.Shake();
             SpawnParticles.instance.SpawnParticle("Hit1", transform.position);
             Impulse();
             currentLife -= damage;
@@ -263,7 +264,7 @@ public class EnemyBehaviour : MonoBehaviour {
         var distance = transform.position.x - Player.instance.transform.position.x;
         var direction = distance >= 0 ? 1 : -1;
         rb.velocity = Vector2.zero;
-        rb.AddForce(new Vector2(direction * speed * impulseForce, 100), ForceMode2D.Force);
+        rb.AddForce(new Vector2(direction * speed * impulseForce.x, impulseForce.y), ForceMode2D.Force);
     }
 
     void Death() {
