@@ -56,6 +56,7 @@ public class Ally : MonoBehaviour {
     public void Release() {
         rb.gravityScale = 0;
         anim.SetTrigger("Release");
+        Player.instance.save.Rescue();
     }
 
     private bool IsGrounded() {
@@ -69,8 +70,7 @@ public class Ally : MonoBehaviour {
                 FadeNPC();
             } else
             if (!follow) follow = true;
-        }
-        
+        }        
     }
 
     void FollowPlayer() {

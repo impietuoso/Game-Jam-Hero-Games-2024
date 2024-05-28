@@ -8011,6 +8011,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 4030286516935545908, guid: 0ed222e1cf077644197c6abc105d06b6, type: 3}
+      propertyPath: save
+      value: 
+      objectReference: {fileID: 11400000, guid: 3cc11de5d1ec51c44a49148b65a0df04, type: 2}
+    - target: {fileID: 4030286516935545908, guid: 0ed222e1cf077644197c6abc105d06b6, type: 3}
       propertyPath: hpSlider
       value: 
       objectReference: {fileID: 4111191894215127594}

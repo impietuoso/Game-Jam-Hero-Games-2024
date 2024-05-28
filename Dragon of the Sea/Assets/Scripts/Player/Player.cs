@@ -82,6 +82,7 @@ public class Player : MonoBehaviour {
     public float meleeAttackAreaSpeedDelay;
 
     public TextMeshProUGUI objectiveText;
+    public Save save;
 
     #endregion
 
@@ -535,7 +536,7 @@ public class Player : MonoBehaviour {
     }
 
     public void StopPlayer() {
-        isStoping = true;
+        cutscene = true;
         playerAxis.x = 0;
         rb.velocity = Vector2.zero;
         enabled = false;

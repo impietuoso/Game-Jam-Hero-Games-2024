@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour {
-
     private void Start() {
         VsnController.instance.StartVSN("start_scene");
     }
@@ -21,6 +20,9 @@ public class Menu : MonoBehaviour {
                 break;
             case 2:
                 VsnController.instance.StartVSN("loading_island");
+                break;
+            case 3:
+                VsnController.instance.StartVSN("loading_finalbattle");
                 break;
         }
     }
