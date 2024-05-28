@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -10,20 +11,33 @@ public class Spawn : MonoBehaviour
     public float spawnFireRate;
     float currentSpawnTime;
     int currentSpawnedObject;
+    public float timeUntilBeginWave;
+    public TextMeshProUGUI timeText;
+    public GameObject boss;
 
     [SerializeField] private int currentWave;
     [SerializeField] private bool canSpawn;
 
     public Transform spawnPoint;
 
-    // Update is called once per frame
+    private void Start() {
+        Invoke("StartSpawn", timeUntilBeginWave);
+    }
+
     void Update()
     {
+        if (timeUntilBeginWave > 0) {
+            timeUntilBeginWave -= Time.deltaTime;
+            timeText.text = "Next Wave In: " + (int)timeUntilBeginWave;
+        }
+        if (timeUntilBeginWave < 0) timeUntilBeginWave = 0;
+
         if (canSpawn) {
             currentSpawnTime += Time.deltaTime;
+            timeText.text = "Next Wave In: " + (int)(waves[currentWave].timeUntilNextWave - currentSpawnTime);
             if (currentSpawnTime >= spawnFireRate) {
                 TrySpawn();
-            }            
+            }
         }
     }
 
@@ -53,6 +67,8 @@ public class Spawn : MonoBehaviour
             StartCoroutine(WaitngForTheNextWave(waves[currentWave].timeUntilNextWave));
         } else {
             currentWave = 0;
+            Debug.Log("Acabo");
+            Invoke("SpawnBoss", 2f);
         }
     }
 
@@ -77,6 +93,10 @@ public class Spawn : MonoBehaviour
         if(missile.TryGetComponent<Rigidbody2D>(out Rigidbody2D rb)) {
             rb.velocity = Vector2.right * 2;
         }
+    }
+
+    void SpawnBoss() {
+        Instantiate(boss, spawnPoint.position, Quaternion.identity);        
     }
 }
 

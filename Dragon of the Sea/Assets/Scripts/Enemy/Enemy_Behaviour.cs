@@ -219,6 +219,12 @@ public class EnemyBehaviour : MonoBehaviour {
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D col) {
+        if (col.gameObject.tag == "Death") {
+            TakeDamage(999);
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D col) {
         if (dead) return;
         if (stunned) return;

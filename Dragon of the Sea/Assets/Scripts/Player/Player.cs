@@ -461,6 +461,9 @@ public class Player : MonoBehaviour {
                 SpawnJumpParticle();
             }
         }
+        if(col.gameObject.tag == "Death") {
+            TakeDamage(999);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D col) {

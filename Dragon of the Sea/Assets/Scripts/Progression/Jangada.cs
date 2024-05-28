@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Jangada : MonoBehaviour
-{
+public class Jangada : MonoBehaviour {
     public Menu menu;
     public void Partir() {
         if (Player.instance.save.rescueComplete) {
