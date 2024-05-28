@@ -17926,8 +17926,8 @@ PolygonCollider2D:
     m_Paths:
     - - {x: 360, y: 37.5}
       - {x: -110, y: 37.5}
-      - {x: -110, y: -5}
-      - {x: 360, y: -5}
+      - {x: -110, y: -10}
+      - {x: 360, y: -10}
   m_UseDelaunayMesh: 0
 --- !u!1001 &415565736
 PrefabInstance:

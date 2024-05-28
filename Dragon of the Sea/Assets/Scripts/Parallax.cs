@@ -14,8 +14,8 @@ public class Parallax : MonoBehaviour {
     }
 
     void LateUpdate() {
-        float RePos = cam.transform.position.x * (1 - ParallaxEffect);
-        float Distance = cam.transform.position.x * ParallaxEffect;
+        float RePos = cam.position.x * (1 - ParallaxEffect);
+        float Distance = cam.position.x * ParallaxEffect;
 
         transform.position = new Vector3(StartPos.x + Distance, StartPos.y, transform.position.z);
 
