@@ -419,13 +419,6 @@ public class Player : MonoBehaviour {
                 TrailRenderer trail = waterBall.GetComponent<TrailRenderer>();
                 PositionConstraint ball = waterBall.GetComponent<PositionConstraint>();
                 //trail.enabled = false;
-
-                if(currentPlayerHp + (int)currentWaterBallSize > maxPlayerHp) {
-                    currentPlayerHp = maxPlayerHp;
-                } else {
-                    currentPlayerHp += (int)currentWaterBallSize;
-                }
-                hpSlider.value = currentPlayerHp;
                 DOTween.To(() => ball.weight, (v) => ball.weight = v, 0, attackSpeed);
             }
         }
@@ -564,5 +557,15 @@ public class Player : MonoBehaviour {
 
     public void Objetive() {
         objectiveText.text = save.objective;
+    }
+
+
+    public void Cura(int cura) {
+        if (currentPlayerHp + cura > maxPlayerHp) {
+            currentPlayerHp = maxPlayerHp;
+        } else {
+            currentPlayerHp += cura;
+        }
+        hpSlider.value = currentPlayerHp;
     }
 }
