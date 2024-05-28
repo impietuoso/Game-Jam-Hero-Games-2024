@@ -40,6 +40,10 @@ public class Menu : MonoBehaviour {
         }
     }
 
+    public void Reload() {
+        LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
     public void ChangeObjetive(string nextObjective) {
         save.objective = nextObjective;
     }

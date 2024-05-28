@@ -239,7 +239,7 @@ public class EnemyBehaviour : MonoBehaviour {
     public void TakeDamage(int damage) {
         if (dead) return;
         currentAttackTime = 0;
-        if (currentLife - damage <= 0) {
+        if (currentLife<= 0) {
             Death();
         } else {
             CameraShake.instance.Shake();
