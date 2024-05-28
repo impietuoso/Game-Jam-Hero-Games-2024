@@ -739,9 +739,10 @@ MonoBehaviour:
   playerDamage: 1
   facingRight: 1
   showGizmos: 1
+  cutscene: 0
   groundLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 2056
   interactLayer:
     serializedVersion: 2
     m_Bits: 512

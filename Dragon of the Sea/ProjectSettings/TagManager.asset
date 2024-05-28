@@ -11,6 +11,7 @@ TagManager:
   - Interactable
   - Canvas
   - PlayerHitBox
+  - Death
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - Player
   - Interactable
   - PlayerHitBox
-  - 
+  - Death
   - 
   - 
   - 

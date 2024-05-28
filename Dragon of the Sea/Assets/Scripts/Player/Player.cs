@@ -1,5 +1,6 @@
 using DG.Tweening;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.InputSystem;
@@ -51,6 +52,7 @@ public class Player : MonoBehaviour {
     private bool canCountWalkValue;
     public bool showGizmos;
     private bool dead;
+    public bool cutscene;
 
     [Space(15)]
     public LayerMask groundLayer;
@@ -79,6 +81,8 @@ public class Player : MonoBehaviour {
     public float meleeAttackAreaAlpha;
     public float meleeAttackAreaSpeedDelay;
 
+    public TextMeshProUGUI objectiveText;
+
     #endregion
 
     void Awake() {
@@ -101,6 +105,7 @@ public class Player : MonoBehaviour {
 
     void Update() {
         if (dead) return;
+        if (cutscene) return;
         if (IsGrounded()) rb.velocity = new Vector2(playerAxis.x * playerVelocity, rb.velocity.y);
         else rb.velocity = new Vector2(playerAxis.x * (playerVelocity - jumpingSlow), rb.velocity.y);
 
@@ -185,6 +190,7 @@ public class Player : MonoBehaviour {
 
     public void SwapCursor() {
         if (dead) return;
+        if (cutscene) return;
         var mousePosition = Mouse.current.position.ReadValue();
         var worldMousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
         var distance = (Vector2)worldMousePosition - (Vector2)transform.position;
@@ -200,6 +206,7 @@ public class Player : MonoBehaviour {
 
     public void PlayerMove(InputAction.CallbackContext context) {
         if (dead) return;
+        if (cutscene) return;
         if (isAttacking) return;
         if (isStoping) return;
         playerAxis = context.ReadValue<Vector2>();
@@ -237,6 +244,7 @@ public class Player : MonoBehaviour {
 
     public void Jump(InputAction.CallbackContext context) {
         if (dead) return;
+        if (cutscene) return;
         if (isAttacking) return;
         if (context.performed && IsGrounded()) {
             canCountWalkValue = false;
@@ -254,6 +262,7 @@ public class Player : MonoBehaviour {
 
     public void Interact(InputAction.CallbackContext context) {
         if (dead) return;
+        if (cutscene) return;
         if (context.performed) {
             Collider2D[] obj = Physics2D.OverlapCircleAll(transform.position, meleeAttackRange, interactLayer);
             Debug.Log("Interagiu");
@@ -270,6 +279,7 @@ public class Player : MonoBehaviour {
 
     public void Attack(InputAction.CallbackContext context) {
         if (dead) return;
+        if (cutscene) return;
         if (isAttacking || !IsGrounded()) return;
         if (context.performed) DOTween.ToAlpha(() => meleeArea.color, color => meleeArea.color = color, meleeAttackAreaAlpha, meleeAttackAreaSpeedDelay);
         if (context.canceled) DOTween.ToAlpha(() => meleeArea.color, color => meleeArea.color = color, 0, meleeAttackAreaSpeedDelay);
@@ -381,6 +391,7 @@ public class Player : MonoBehaviour {
 
     public void SpecialAttack(InputAction.CallbackContext context) {
         if (dead) return;
+        if (cutscene) return;
         if (!IsGrounded()) return;
         if (isStoping) return;
         if (playerAxis.x != 0) return;
@@ -455,6 +466,7 @@ public class Player : MonoBehaviour {
     }
 
     private void OnTriggerEnter2D(Collider2D col) {
+        if (cutscene) return;
         if (col.tag == "Enemy_Projectile") {
             if (col.TryGetComponent<DamageHolder>(out DamageHolder holder)) {
                 if (holder.canDealDamage) TakeDamage(holder.damage);
@@ -479,7 +491,8 @@ public class Player : MonoBehaviour {
     }
 
     public void TakeDamage(int damage) {
-        if(currentPlayerHp - damage <= 0) {
+        if (cutscene) return;
+        if (currentPlayerHp - damage <= 0) {
             Death();
         } else {
             currentPlayerHp -= damage;
@@ -527,6 +540,18 @@ public class Player : MonoBehaviour {
         playerAxis.x = 0;
         rb.velocity = Vector2.zero;
         enabled = false;
+    }
+
+    public void InitialCutscene() {
+        cutscene = true;
+        playerAxis.x = 0;
+        rb.velocity = Vector2.zero;
+        anim.SetTrigger("Begin");
+    }
+
+    public void BeginGame() {
+        cutscene = false;
+        anim.Play("Ground");
     }
 
 }

@@ -1,12 +1,14 @@
 ﻿fade_out 0 "black"
-wait 1
-fade_in 0.5
 
 if abriu_jogo == false
 set_var abriu_jogo true
+fade_in 0.5
 
 else
 if tutorial_terminado == false
+Begin "sim"
+fade_in 0.5
+
 say "???" "Você recebeu a benção do Dragão do Mar, agora, o mar é seu aliado"
 say "Seu povo foi levado daqui, para conseguir salvá-los, precisa aprender a controlar sua benção"
 say "Use o botão Direiro do Mouse para juntar água"
@@ -14,7 +16,11 @@ say "Use o botão Esquerdo para usar a água"
 say "Se não tiver água o suficiente, seus ataques não funcionarão"
 say "Não há mais tempo a perder, corra, pegue a Jangada no final da ilha e vá ao resgate de seu Povo!"
 set_var tutorial_terminado true
+wait 1
+
+End "sim"
 
 endif
+fade_in 0.5
 
 endif
