@@ -1,0 +1,1 @@
+﻿show_info "Você ainda não resgatou todos os seus companheiros, volte e liberte todos" 5

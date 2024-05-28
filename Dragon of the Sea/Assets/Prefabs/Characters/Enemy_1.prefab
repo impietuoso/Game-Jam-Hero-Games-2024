@@ -5653,7 +5653,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   showGizmo: 1
-  maxLife: 20
+  maxLife: 6
   damage: 1
   attackRadious: 7.5
   attackFireRate: 1.2
@@ -5680,6 +5680,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  chanceDeDrop: 0
 --- !u!114 &613726439756358667
 MonoBehaviour:
   m_ObjectHideFlags: 0

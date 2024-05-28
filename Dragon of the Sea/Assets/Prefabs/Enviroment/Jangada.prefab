@@ -120,7 +120,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1248a826f228aa14eb75b830d596a850, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetTag: Player
+  targetTag:
+  - Player
   onCollisionEnter2D:
     m_PersistentCalls:
       m_Calls:
@@ -154,6 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25d09aadf625b154abcb2d160d75e5fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menu: {fileID: 0}
 --- !u!1 &6737580687479255399
 GameObject:
   m_ObjectHideFlags: 0

@@ -61,10 +61,10 @@ MonoBehaviour:
     numberOfEnemies: 7
     timeUntilNextWave: 25
   spawnFireRate: 2
-  timeUntilBeginWave: 10
+  timeUntilBeginWave: 20
   timeText: {fileID: 4563091561838235976}
   boss: {fileID: 1033302008981892691, guid: 4d21f1b3f5133f94382b5ccd9b225461, type: 3}
-  lastEnemy: {fileID: 0}
+  lastEnemy: []
   waitingForLastEnemy: 0
   currentWave: 0
   canSpawn: 0

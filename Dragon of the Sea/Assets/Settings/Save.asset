@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e22b1f9bbee0a7459c785a6959b197b, type: 3}
   m_Name: Save
   m_EditorClassIdentifier: 
-  rescuedVillagers: 0
+  rescuedVillagers: 10
   maxRescuredVillagers: 10
-  rescueComplete: 0
-  objective: '<b>Objetivos: </b> \nSiga ao Porto'
+  rescueComplete: 1
+  objective: <b>Objetivos:</b> \nSiga ao Porto

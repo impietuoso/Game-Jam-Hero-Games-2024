@@ -328,7 +328,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   showGizmo: 1
-  maxLife: 30
+  maxLife: 6
   damage: 1
   attackRadious: 7
   attackFireRate: 1.2
@@ -350,11 +350,12 @@ MonoBehaviour:
   patrolPoint2: {fileID: 7811499926214394116}
   hpSlider: {fileID: 8374145193498181802}
   stunned: 0
-  stunTime: 0.2
+  stunTime: 0.1
   groundCheck: {fileID: 5854311532660932527}
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  chanceDeDrop: 50
 --- !u!114 &5597636704975811492
 MonoBehaviour:
   m_ObjectHideFlags: 0

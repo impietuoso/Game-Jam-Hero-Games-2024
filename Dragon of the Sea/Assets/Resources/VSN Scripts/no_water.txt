@@ -1,7 +1,5 @@
 ﻿ if aviso_de_agua == false
- wait 1
- say "Você não tem água o suficiente"
- say "Precisa de mais água"
+ show_info "Precisa de mais água" 5
  set_var aviso_de_agua true
  
  else

@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 public class Spawn : MonoBehaviour {
+    public static Spawn instance;
     public enum Final { Boss, FimDaWave}
     public Final final = new();
 
@@ -25,20 +26,16 @@ public class Spawn : MonoBehaviour {
 
     public Transform spawnPoint;
 
+    private void Awake() {
+        instance = this;
+    }
+
     private void Start() {
         Invoke("StartSpawn", timeUntilBeginWave);
     }
 
-    void Update()
-    {
+    void Update() {
         if(waitingForLastEnemy) {
-            if(lastEnemy.Count > 0) {
-                foreach (var item in lastEnemy) {
-                    if (item == null) lastEnemy.Remove(item);
-                }
-            }
-            
-
             if(lastEnemy.Count == 0 && !ending) {
                 ending = true;
                 Player.instance.StopPlayer();
@@ -48,14 +45,14 @@ public class Spawn : MonoBehaviour {
 
         if (timeUntilBeginWave > 0 && currentWave < waves.Count) {
             timeUntilBeginWave -= Time.deltaTime;
-            timeText.text = "Próxima Invasão em: " + (int)timeUntilBeginWave;
-        } else timeText.text = "Derrote Todos os Inimigos";
+            timeText.text = "Próxima Invasão em: " + timeUntilBeginWave.ToString("F0");
+        } else timeText.text = "Derrote Todos os Inimigos!";
 
         if (timeUntilBeginWave < 0) timeUntilBeginWave = 0;
 
         if (canSpawn) {
             currentSpawnTime += Time.deltaTime;
-            timeText.text = "Próxima Invasão em" + (int)(waves[currentWave].timeUntilNextWave - currentSpawnTime);
+            timeText.text = "Próxima Invasão em " + (waves[currentWave].timeUntilNextWave - currentSpawnTime).ToString("F0");
             if (currentSpawnTime >= spawnFireRate) {
                 TrySpawn();
             }
@@ -83,7 +80,7 @@ public class Spawn : MonoBehaviour {
     }
 
     void NextWave() {
-        if (currentWave < waves.Count - 1) {
+        if (currentWave < waves.Count) {
             currentWave++;
             StartCoroutine(WaitngForTheNextWave(waves[currentWave].timeUntilNextWave));
         } else {
@@ -107,11 +104,11 @@ public class Spawn : MonoBehaviour {
             int randomType = UnityEngine.Random.Range(0, waves[currentWave].enemy_types.Count);
             GameObject newObj = Instantiate(waves[currentWave].enemy_types[randomType], spawnPoint.position, Quaternion.identity);
             TryVelocity(newObj);
-            lastEnemy.Add(newObj);
+            if(waitingForLastEnemy) lastEnemy.Add(newObj);
         } else {
             GameObject newObj = Instantiate(waves[currentWave].enemy_types[0], spawnPoint.position, Quaternion.identity);
             TryVelocity(newObj);
-            lastEnemy.Add(newObj);
+            if (waitingForLastEnemy) lastEnemy.Add(newObj);
         }
         currentSpawnedObject++;
     }
@@ -124,6 +121,10 @@ public class Spawn : MonoBehaviour {
 
     void SpawnBoss() {
         Instantiate(boss, spawnPoint.position, Quaternion.identity);        
+    }
+
+    public void RemoveEnemy(GameObject enemy) {
+        if (lastEnemy.Contains(enemy)) lastEnemy.Remove(enemy);
     }
 }
 

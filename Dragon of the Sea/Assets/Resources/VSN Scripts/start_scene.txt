@@ -24,3 +24,15 @@ endif
 fade_in 0.5
 
 endif
+
+if invasion == true
+show_info "Você resgatou o seu vilarejo." 3
+wait 3.25
+show_info "Mas o exército do lorde querendo vingança." 3
+wait 3.25
+show_info "Rápido! derrote eles antes que o seu vilarejo se torne apenas cinzas!" 4
+wait 3.25
+
+else
+
+endif

@@ -62,6 +62,7 @@ public class EnemyBehaviour : MonoBehaviour {
 
     public Transform groundCheck;
     public LayerMask groundLayer;
+    public int chanceDeDrop;
 
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();
@@ -269,6 +270,8 @@ public class EnemyBehaviour : MonoBehaviour {
 
     void Death() {
         SpawnParticles.instance.SpawnParticle("Blood", transform.position);
+        int chance = UnityEngine.Random.Range(0,101);
+        if(type == enemy_type.Invader) if(chance <= chanceDeDrop) SpawnParticles.instance.SpawnParticle("Cura", transform.position);
         dead = true;
         rb.velocity = Vector2.zero;
         currentLife = 0;
@@ -283,11 +286,14 @@ public class EnemyBehaviour : MonoBehaviour {
     }
 
     private bool IsGrounded() {
-
         return Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer); ;
     }
 
     public void RemoveEnemy() {
         Destroy(gameObject.transform.parent.gameObject, 2.5f);
+    }
+
+    private void OnDestroy() {
+        Spawn.instance.RemoveEnemy(gameObject);
     }
 }

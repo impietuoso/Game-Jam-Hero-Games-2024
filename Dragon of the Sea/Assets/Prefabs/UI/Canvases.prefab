@@ -2069,6 +2069,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44840e445712c9d4281ea7ef51527839, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseObjective: <b>Objetivos:</b> \nSiga ao Porto
+  islandObjective: <b>Objetivos:</b> \nResgate todos os 10 Aliados
+  finalbattleObjective: <b>Objetivos:</b> \nSiga ao Porto
+  save: {fileID: 11400000, guid: 3cc11de5d1ec51c44a49148b65a0df04, type: 2}
 --- !u!1 &1441563477820588373
 GameObject:
   m_ObjectHideFlags: 0
@@ -14958,6 +14962,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 37
       objectReference: {fileID: 0}
+    - target: {fileID: 224498599922636044, guid: 7397ec74f9972d24ba0b68ff138f4036, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 3.8808594
+      objectReference: {fileID: 0}
     - target: {fileID: 224514867793332498, guid: 7397ec74f9972d24ba0b68ff138f4036, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -14.735275
@@ -15098,6 +15106,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 224697839433906980, guid: 7397ec74f9972d24ba0b68ff138f4036, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224701939070887016, guid: 7397ec74f9972d24ba0b68ff138f4036, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.000061035156
+      objectReference: {fileID: 0}
     - target: {fileID: 224845180325315644, guid: 7397ec74f9972d24ba0b68ff138f4036, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0.9
@@ -15113,6 +15129,130 @@ PrefabInstance:
     - target: {fileID: 224845180325315644, guid: 7397ec74f9972d24ba0b68ff138f4036, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 38
+      objectReference: {fileID: 0}
+    - target: {fileID: 2887734915256584133, guid: 7397ec74f9972d24ba0b68ff138f4036, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 417488c84b8a23744a396e4ca636988f, type: 3}
+    - target: {fileID: 2887734915256584133, guid: 7397ec74f9972d24ba0b68ff138f4036, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2887734915256584133, guid: 7397ec74f9972d24ba0b68ff138f4036, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2887734915256584133, guid: 7397ec74f9972d24ba0b68ff138f4036, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6580913200187297712, guid: 7397ec74f9972d24ba0b68ff138f4036, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.9645434
+      objectReference: {fileID: 0}
+    - target: {fileID: 6580913200187297712, guid: 7397ec74f9972d24ba0b68ff138f4036, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.8049601
+      objectReference: {fileID: 0}
+    - target: {fileID: 6580913200187297712, guid: 7397ec74f9972d24ba0b68ff138f4036, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.028407814
+      objectReference: {fileID: 0}
+    - target: {fileID: 6580913200187297712, guid: 7397ec74f9972d24ba0b68ff138f4036, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.1463417
+      objectReference: {fileID: 0}
+    - target: {fileID: 6580913200187297712, guid: 7397ec74f9972d24ba0b68ff138f4036, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6580913200187297712, guid: 7397ec74f9972d24ba0b68ff138f4036, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6580913200187297712, guid: 7397ec74f9972d24ba0b68ff138f4036, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7080533048602213104, guid: 7397ec74f9972d24ba0b68ff138f4036, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7080533048602213104, guid: 7397ec74f9972d24ba0b68ff138f4036, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7080533048602213104, guid: 7397ec74f9972d24ba0b68ff138f4036, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 186.68451
+      objectReference: {fileID: 0}
+    - target: {fileID: 7080533048602213104, guid: 7397ec74f9972d24ba0b68ff138f4036, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 93.342255
+      objectReference: {fileID: 0}
+    - target: {fileID: 8505042379171496388, guid: 7397ec74f9972d24ba0b68ff138f4036, type: 3}
+      propertyPath: m_text
+      value: Sabe aquele lugar onde um monte de bichinhos e plantas vivem e convivem?
+      objectReference: {fileID: 0}
+    - target: {fileID: 8505042379171496388, guid: 7397ec74f9972d24ba0b68ff138f4036, type: 3}
+      propertyPath: m_fontSize
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 8505042379171496388, guid: 7397ec74f9972d24ba0b68ff138f4036, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 111e073448f36a94998864515eda412d, type: 2}
+    - target: {fileID: 8505042379171496388, guid: 7397ec74f9972d24ba0b68ff138f4036, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8505042379171496388, guid: 7397ec74f9972d24ba0b68ff138f4036, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8505042379171496388, guid: 7397ec74f9972d24ba0b68ff138f4036, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8505042379171496388, guid: 7397ec74f9972d24ba0b68ff138f4036, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8505042379171496388, guid: 7397ec74f9972d24ba0b68ff138f4036, type: 3}
+      propertyPath: m_fontSizeMax
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 8505042379171496388, guid: 7397ec74f9972d24ba0b68ff138f4036, type: 3}
+      propertyPath: m_lineSpacing
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8505042379171496388, guid: 7397ec74f9972d24ba0b68ff138f4036, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 8505042379171496388, guid: 7397ec74f9972d24ba0b68ff138f4036, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -4015775037276490831, guid: 111e073448f36a94998864515eda412d, type: 2}
+    - target: {fileID: 8505042379171496388, guid: 7397ec74f9972d24ba0b68ff138f4036, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8505042379171496388, guid: 7397ec74f9972d24ba0b68ff138f4036, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 8505042379171496388, guid: 7397ec74f9972d24ba0b68ff138f4036, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 8505042379171496388, guid: 7397ec74f9972d24ba0b68ff138f4036, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8505042379171496388, guid: 7397ec74f9972d24ba0b68ff138f4036, type: 3}
+      propertyPath: m_VertexBufferAutoSizeReduction
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3893667497243910983, guid: 7397ec74f9972d24ba0b68ff138f4036, type: 3}

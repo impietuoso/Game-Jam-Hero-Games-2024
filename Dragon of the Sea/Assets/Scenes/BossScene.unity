@@ -959,6 +959,7 @@ GameObject:
   - component: {fileID: 222707757}
   - component: {fileID: 222707759}
   - component: {fileID: 222707758}
+  - component: {fileID: 222707760}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -1036,6 +1037,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &222707760
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 222707756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+  m_PivotOffset: {x: 0, y: 0, z: 0}
+  m_AmplitudeGain: 1
+  m_FrequencyGain: 1
+  mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &226324037
 GameObject:
   m_ObjectHideFlags: 0
@@ -2335,7 +2353,7 @@ Transform:
   m_GameObject: {fileID: 407693381}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -103.3, y: -2.6300004, z: -10}
+  m_LocalPosition: {x: -107.37, y: -3.8100004, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2416,6 +2434,8 @@ MonoBehaviour:
     prefab: {fileID: 4321648977791567191, guid: 218d1a9cf282e1d4db0977d69e0893c6, type: 3}
   - particleName: Blood
     prefab: {fileID: 4029999406916383778, guid: 116c2bc8f6111a84381d3c1955557aaa, type: 3}
+  - particleName: Cura
+    prefab: {fileID: 2059337456667966490, guid: d25861f1f0844cd4ab2d14c4e8a53eb8, type: 3}
 --- !u!4 &415514652
 Transform:
   m_ObjectHideFlags: 0
@@ -18548,10 +18568,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: InvasionSpawner
       objectReference: {fileID: 0}
-    - target: {fileID: 5628976622763065817, guid: 14913d9830ea751488ff1b1195dfe24c, type: 3}
-      propertyPath: lastEnemy.Array.size
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8374144465415679187, guid: 14913d9830ea751488ff1b1195dfe24c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 40.17
@@ -20519,7 +20535,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.20784315, g: 0.43529415, b: 0.60784316, a: 1}
+  m_BackGroundColor: {r: 0.10196079, g: 0.03529412, b: 0.15294118, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -20569,7 +20585,7 @@ Transform:
   m_GameObject: {fileID: 1353260989}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -100.50339, y: -1.27764, z: -10}
+  m_LocalPosition: {x: -100.50339, y: -1.2776399, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -25339,11 +25355,11 @@ PrefabInstance:
       objectReference: {fileID: 1353260991}
     - target: {fileID: 3319728509836966804, guid: e0172f31b14d1f143bfcac76b33b2ee9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -103.3
+      value: -107.37
       objectReference: {fileID: 0}
     - target: {fileID: 3319728509836966804, guid: e0172f31b14d1f143bfcac76b33b2ee9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.91
+      value: -4.09
       objectReference: {fileID: 0}
     - target: {fileID: 3319728509836966804, guid: e0172f31b14d1f143bfcac76b33b2ee9, type: 3}
       propertyPath: m_LocalPosition.z

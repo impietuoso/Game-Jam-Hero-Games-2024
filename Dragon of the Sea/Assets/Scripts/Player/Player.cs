@@ -146,6 +146,7 @@ public class Player : MonoBehaviour {
     #region Controles
 
     public void EnablePlayerControls() {
+        Debug.Log("Enable Player Actions");
         uiActionMap.Disable();
         playerActionMap.Enable();
     }
@@ -452,6 +453,7 @@ public class Player : MonoBehaviour {
                 jumping = false;
                 canCountWalkValue = true;
                 playlist.PlaySFX("landing");
+                DisableAttack();
                 SpawnJumpParticle();
             }
         }
@@ -520,19 +522,21 @@ public class Player : MonoBehaviour {
     }
 
     public void ActiveMeleeDamate() {
-        if (waterBall.TryGetComponent<DamageHolder>(out DamageHolder holder)) {
+        if (hitbox.TryGetComponent<DamageHolder>(out DamageHolder holder)) {
+            holder.damage = playerDamage;
             holder.canDealDamage = true;
         }
     }
 
     public void DisableMeleeDamate() {
-        if (waterBall.TryGetComponent<DamageHolder>(out DamageHolder holder)) {
+        if (hitbox.TryGetComponent<DamageHolder>(out DamageHolder holder)) {
             holder.canDealDamage = false;
         }
     }
 
     public void StopPlayer() {
         cutscene = true;
+        DisableAttack();
         playerAxis.x = 0;
         rb.velocity = Vector2.zero;
         enabled = false;
@@ -540,6 +544,7 @@ public class Player : MonoBehaviour {
 
     public void InitialCutscene() {
         cutscene = true;
+        DisableAttack();
         playerAxis.x = 0;
         rb.velocity = Vector2.zero;
         anim.SetTrigger("Begin");
