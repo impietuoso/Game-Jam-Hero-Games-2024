@@ -80,7 +80,6 @@ public class Spawn : MonoBehaviour {
     }
 
     void NextWave() {
-        lastEnemy.Clear();
         if (currentWave < waves.Count -1) {
             currentWave++;
             StartCoroutine(WaitngForTheNextWave(waves[currentWave].timeUntilNextWave));

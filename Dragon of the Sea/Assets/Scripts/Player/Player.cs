@@ -546,7 +546,7 @@ public class Player : MonoBehaviour {
         cutscene = true;
         DisableAttack();
         playerAxis.x = 0;
-        rb.velocity = Vector2.zero;
+        if(rb != null) rb.velocity = Vector2.zero;
         anim.SetTrigger("Begin");
     }
 

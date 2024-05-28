@@ -12,7 +12,7 @@ bg "6"
 fade_in 1
 say "Para que caso haja a necessidade de um protetor novamente..."
 say "Estarei aqui"
-fade_out 2
+fade_out 2 "black"
 wait
 say "Desenvolvedores" "Esse é o Fim do Jogo, Obrigado por jogar"
 say "Espero que tenham gostado"
