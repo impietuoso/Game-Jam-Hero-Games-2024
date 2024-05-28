@@ -269,7 +269,7 @@ public class EnemyBehaviour : MonoBehaviour {
     }
 
     void Death() {
-        Spawn.instance.RemoveEnemy(gameObject);
+        if(type == enemy_type.Invader) Spawn.instance.RemoveEnemy(gameObject);
         SpawnParticles.instance.SpawnParticle("Blood", transform.position);
         int chance = UnityEngine.Random.Range(0,101);
         if(type == enemy_type.Invader) if(chance <= chanceDeDrop) SpawnParticles.instance.SpawnParticle("Cura", transform.position);

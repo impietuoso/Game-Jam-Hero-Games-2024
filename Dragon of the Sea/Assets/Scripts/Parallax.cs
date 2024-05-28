@@ -13,7 +13,7 @@ public class Parallax : MonoBehaviour {
         cam = Camera.main.transform;
     }
 
-    void Update() {
+    void LateUpdate() {
         float RePos = cam.transform.position.x * (1 - ParallaxEffect);
         float Distance = cam.transform.position.x * ParallaxEffect;
 
