@@ -7,7 +7,7 @@ fade_in 0.5
 else
 if tutorial_terminado == false
 Begin "sim"
-fade_in 0.5
+fade_in 1
 
 say "???" "Você recebeu a benção do Dragão do Mar, agora, o mar é seu aliado"
 say "Seu povo foi levado daqui, para conseguir salvá-los, precisa aprender a controlar sua benção"

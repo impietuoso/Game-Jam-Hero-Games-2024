@@ -265,11 +265,9 @@ public class Player : MonoBehaviour {
         if (cutscene) return;
         if (context.performed) {
             Collider2D[] obj = Physics2D.OverlapCircleAll(transform.position, meleeAttackRange, interactLayer);
-            Debug.Log("Interagiu");
             DOTween.ToAlpha(() => meleeArea.color, color => meleeArea.color = color, meleeAttackAreaAlpha, meleeAttackAreaSpeedDelay);
             foreach (var item in obj) {
                 if (item.TryGetComponent<Interactable>(out Interactable interation)) {
-                    Debug.Log("Tentou Pegar Component");
                     interation.Interact();
                 }
             }
@@ -552,6 +550,7 @@ public class Player : MonoBehaviour {
     public void BeginGame() {
         cutscene = false;
         anim.Play("Ground");
+        save.Reset();
     }
 
 }

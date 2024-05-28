@@ -6,8 +6,11 @@ public class Jangada : MonoBehaviour
 {
     public void Partir() {
         if (Player.instance.save.rescueComplete) {
-            Player.instance.StopPlayer();
-
+            Invoke("StopPlayer", 0.1f);
         }
+    }
+
+    void StopPlayer() {
+        Player.instance.StopPlayer();
     }
 }

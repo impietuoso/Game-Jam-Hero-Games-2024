@@ -11,4 +11,9 @@ public class Save : ScriptableObject {
         rescuedVillagers++;
         if(rescuedVillagers == maxRescuredVillagers) rescueComplete = true;
     }
+
+    public void Reset() {
+        rescuedVillagers = 0;
+        rescueComplete = false;
+    }
 }
