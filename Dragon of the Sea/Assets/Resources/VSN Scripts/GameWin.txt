@@ -1,0 +1,24 @@
+﻿wait 1
+fade_out 2 "black"
+wait 1
+bg "1"
+fade_in 1
+say "Após derrotas os conquistadores e salvar meu povo..."
+say "Tudo voltou a ficar em paz"
+say "Agora, com meu Povo livre, ficarei vigilante"
+fade_out 1 "black"
+wait 1
+bg "6"
+fade_in 1
+say "Para que caso haja a necessidade de um protetor novamente..."
+say "Estarei aqui"
+fade_out 2
+wait
+say "Desenvolvedores" "Esse é o Fim do Jogo, Obrigado por jogar"
+say "Espero que tenham gostado"
+say "" "Equipe:"
+say "Lucas Santos Félix - Artista"
+say "Gabriel Melo Matias Frota - Game Designer"
+say "Saul Rodrigues - Programador"
+say "É isso, Obrigado a todos!"
+load_scene "MainMenu"

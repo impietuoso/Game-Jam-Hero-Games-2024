@@ -5,8 +5,10 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Spawn : MonoBehaviour
-{
+public class Spawn : MonoBehaviour {
+    public enum Final { Boss, FimDaWave}
+    public Final final = new();
+
     public List<Waves> waves = new List<Waves>();
     public float spawnFireRate;
     float currentSpawnTime;
@@ -14,6 +16,9 @@ public class Spawn : MonoBehaviour
     public float timeUntilBeginWave;
     public TextMeshProUGUI timeText;
     public GameObject boss;
+    public GameObject lastEnemy;
+    public bool waitingForLastEnemy;
+    private bool ending;
 
     [SerializeField] private int currentWave;
     [SerializeField] private bool canSpawn;
@@ -26,6 +31,14 @@ public class Spawn : MonoBehaviour
 
     void Update()
     {
+        if(waitingForLastEnemy) {
+            if(lastEnemy != null && !ending) {
+                ending = true;
+                Player.instance.StopPlayer();
+                VsnController.instance.StartVSN("GameWin");
+            }
+        }
+
         if (timeUntilBeginWave > 0) {
             timeUntilBeginWave -= Time.deltaTime;
             timeText.text = "Next Wave In: " + (int)timeUntilBeginWave;
@@ -68,7 +81,11 @@ public class Spawn : MonoBehaviour
         } else {
             currentWave = 0;
             Debug.Log("Acabo");
-            Invoke("SpawnBoss", 2f);
+            if(final == Final.Boss) {
+                Invoke("SpawnBoss", 2f);
+            } else {
+                waitingForLastEnemy = true;
+            }
         }
     }
 
@@ -82,9 +99,11 @@ public class Spawn : MonoBehaviour
             int randomType = UnityEngine.Random.Range(0, waves[currentWave].enemy_types.Count);
             GameObject newObj = Instantiate(waves[currentWave].enemy_types[randomType], spawnPoint.position, Quaternion.identity);
             TryVelocity(newObj);
+            lastEnemy = newObj;
         } else {
             GameObject newObj = Instantiate(waves[currentWave].enemy_types[0], spawnPoint.position, Quaternion.identity);
             TryVelocity(newObj);
+            lastEnemy = newObj;
         }
         currentSpawnedObject++;
     }
