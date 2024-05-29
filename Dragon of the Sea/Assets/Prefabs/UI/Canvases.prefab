@@ -2070,9 +2070,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectives:
-  - objetiveText: 
-  - objetiveText: 
-  - objetiveText: 
+  - objetiveText: '<b>Objetivo:</b>
+
+      - Chegar a Jangada no final da ilha'
+  - objetiveText: '<b>Objetivo:</b>
+
+      - Salvar todos os Aliados
+
+      - Derrotar
+      os Inimigos'
+  - objetiveText: '<b>Objetivo:</b>
+
+      - Derrotar os Invasores'
   save: {fileID: 11400000, guid: 3cc11de5d1ec51c44a49148b65a0df04, type: 2}
   scene: 0
 --- !u!1 &1441563477820588373
@@ -13443,7 +13452,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 21
+  m_SortingOrder: 19
   m_TargetDisplay: 0
 --- !u!114 &2002962030043007708
 MonoBehaviour:

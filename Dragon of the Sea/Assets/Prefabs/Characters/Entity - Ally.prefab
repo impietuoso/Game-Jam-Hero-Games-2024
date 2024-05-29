@@ -107,6 +107,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1358088296437361508}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6931519951416140012}
+        m_TargetAssemblyTypeName: Playlist, Assembly-CSharp
+        m_MethodName: PlaySFX
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Livre
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 256660772199140173}
         m_TargetAssemblyTypeName: DestroyObject, Assembly-CSharp
         m_MethodName: DestroyMe
@@ -220,6 +244,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6617299247709962545}
+  - component: {fileID: 1358088296437361508}
+  - component: {fileID: 7876592344758015008}
   m_Layer: 0
   m_Name: Entity - Ally
   m_TagString: Untagged
@@ -245,6 +271,76 @@ Transform:
   - {fileID: 8611535814401161911}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &1358088296437361508
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1473252380932838456}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 12
+--- !u!114 &7876592344758015008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1473252380932838456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 121244c5747b87044a36b4d432fda8b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetTag:
+  - Player
+  onTriggerEnter2D:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6931519951416140012}
+        m_TargetAssemblyTypeName: Playlist, Assembly-CSharp
+        m_MethodName: PlaySFX
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Hey
+          m_BoolArgument: 0
+        m_CallState: 2
+  onTriggerStay2D:
+    m_PersistentCalls:
+      m_Calls: []
+  onTriggerExit2D:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1482108455414571038
 GameObject:
   m_ObjectHideFlags: 0
@@ -622,7 +718,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0015ae6ce981844f927e50d736b6100, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playlist: []
+  playlist:
+  - alias: Hey
+    clip: {fileID: 8300000, guid: 6bb832f25a024cb429235a3d16f5a6de, type: 3}
+  - alias: Livre
+    clip: {fileID: 8300000, guid: dad1b3bd03a2fcd41932517898fbf490, type: 3}
   audio: {fileID: 3875480135748776498}
   destructableAudio: 0
 --- !u!82 &3875480135748776498
@@ -636,7 +736,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -4435156752473019339, guid: 2067d9687913830428e411c579d9f460, type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

@@ -3196,6 +3196,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rocha (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8859454387357642786, guid: 6f0c01eda9ecb624fbcab0a780914277, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9042889730592227292, guid: 6f0c01eda9ecb624fbcab0a780914277, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9205025850562777932, guid: 6f0c01eda9ecb624fbcab0a780914277, type: 3}
       propertyPath: m_LocalPosition.x
       value: 268.21872
@@ -16229,7 +16237,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6617299247709962545, guid: 488e52a640282334a9e20b315cddc937, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 340.99
+      value: 340.35
       objectReference: {fileID: 0}
     - target: {fileID: 6617299247709962545, guid: 488e52a640282334a9e20b315cddc937, type: 3}
       propertyPath: m_LocalPosition.y

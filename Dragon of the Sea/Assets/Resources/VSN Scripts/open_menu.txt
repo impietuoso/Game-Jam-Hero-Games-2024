@@ -1,2 +1,3 @@
-﻿fade_out 1 "black"
+﻿Mouse "Sim"
+fade_out 1 "black"
 fade_in 0.5
