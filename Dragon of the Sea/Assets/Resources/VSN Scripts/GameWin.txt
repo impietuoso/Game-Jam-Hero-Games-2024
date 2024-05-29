@@ -1,4 +1,4 @@
-﻿wait 1
+﻿wait 1.5
 fade_out 2 "black"
 wait 1
 bg "1"
@@ -19,6 +19,8 @@ say "Espero que tenham gostado"
 say "" "Equipe:"
 say "Lucas Santos Félix - Artista"
 say "Gabriel Melo Matias Frota - Game Designer"
-say "Saul Rodrigues - Programador"
+say "Saul Rodrigues Alcântara - Programador"
 say "É isso, Obrigado a todos!"
-load_scene "MainMenu"
+set_var tutorial_terminado false
+set_var cutsceneended false
+load_scene "0 Menu"

@@ -1,5 +1,4 @@
 ﻿fade_out 1 "black"
 wait 1
-load_scene "BossScene"
 set_var invasion true
-set_var tutorial_terminado true
+load_scene "3 Boss"

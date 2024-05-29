@@ -214,6 +214,7 @@ public class Player : MonoBehaviour {
         playerAxis = context.ReadValue<Vector2>();
 
         if (context.performed) {
+            if (isAttacking) isAttacking = false;
             if (playerAxis.x != 0) {
                 walkDustParticle.Play();
                 lastInput = context;
@@ -224,6 +225,7 @@ public class Player : MonoBehaviour {
         }
 
         if (context.canceled) {
+            if (isAttacking) isAttacking = false;
             if (walkValue >= resetWalkValue && IsGrounded()) {
                 
                 isStoping = true;
@@ -241,6 +243,7 @@ public class Player : MonoBehaviour {
 
     public void EnablePlayerMove() {
         isStoping = false;
+        if (isAttacking) isAttacking = false;
         PlayerMove(lastInput);
     }
 
@@ -257,6 +260,7 @@ public class Player : MonoBehaviour {
             rb.gravityScale = 4;
             SpawnParticles.instance.SpawnParticle("Dust", dustPosition.position);
         } else if (context.canceled && rb.velocity.y > 0f) {
+            if (isAttacking) isAttacking = false;
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * fallMultiply);
             rb.gravityScale = 4;
         }
@@ -266,6 +270,7 @@ public class Player : MonoBehaviour {
         if (dead) return;
         if (cutscene) return;
         if (context.performed) {
+            if (isAttacking) isAttacking = false;
             Collider2D[] obj = Physics2D.OverlapCircleAll(transform.position, meleeAttackRange, interactLayer);
             DOTween.ToAlpha(() => meleeArea.color, color => meleeArea.color = color, meleeAttackAreaAlpha, meleeAttackAreaSpeedDelay);
             foreach (var item in obj) {
@@ -318,6 +323,7 @@ public class Player : MonoBehaviour {
         //SpendWater();
         if (hitbox.TryGetComponent<DamageHolder>(out DamageHolder holder)) {
             holder.damage = playerDamage * (int) (waterBall.transform.localScale.x * waterBallIncreaseValue);
+            holder.doKnockback = true;
         }
         TrailRenderer trail = waterBall.GetComponent<TrailRenderer>();
         PositionConstraint ball = waterBall.GetComponent<PositionConstraint>();
@@ -353,6 +359,7 @@ public class Player : MonoBehaviour {
 
         if (newProjectile.TryGetComponent<DamageHolder>(out DamageHolder holder)) {
             holder.damage = playerDamage;
+            holder.doKnockback = false;
         }
 
         var mousePosition = Mouse.current.position.ReadValue();
@@ -366,6 +373,7 @@ public class Player : MonoBehaviour {
 
         DOTween.ToAlpha(() => meleeArea.color, color => meleeArea.color = color, 0, meleeAttackAreaSpeedDelay);
         HorizontalImpulse(distance);
+        if (isAttacking) isAttacking = false;
     }
 
     private void HorizontalImpulse(Vector3 mouseDistance) {
@@ -385,7 +393,7 @@ public class Player : MonoBehaviour {
     }
 
     public void DisableAttack() {
-        isAttacking = false;
+        if (isAttacking) isAttacking = false;
         PlayerMove(lastInput);
     }
 
@@ -398,7 +406,7 @@ public class Player : MonoBehaviour {
 
         if (context.performed && !isAttacking) {
             if (!charging) {
-                if (isStoping) isStoping = false;
+                if (isAttacking) isAttacking = false;
                 charging = true;
                 isAttacking = true;
                 waterBall.GetComponent<WaterDropsGenerator>().StartSpawn();
@@ -449,6 +457,7 @@ public class Player : MonoBehaviour {
             if (Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer)) {
                 playerAxis.x = 0;
                 if (isStoping) isStoping = false;
+                if (isAttacking) isAttacking = false;
                 PlayerMove(lastInput);
                 jumping = false;
                 canCountWalkValue = true;
@@ -511,6 +520,7 @@ public class Player : MonoBehaviour {
         playerAxis.x = 0;
         rb.velocity = Vector2.zero;
         rb.gravityScale = 4;
+        if (isAttacking) isAttacking = false;
         walkDustParticle.Stop();
         GameConfig.instance.GameOver();
     }
@@ -536,13 +546,14 @@ public class Player : MonoBehaviour {
 
     public void StopPlayer() {
         cutscene = true;
+        if (isAttacking) isAttacking = false;
         DisableAttack();
         playerAxis.x = 0;
         rb.velocity = Vector2.zero;
         enabled = false;
     }
 
-    public void InitialCutscene() {
+    public void BeginInitialCutscene() {
         cutscene = true;
         DisableAttack();
         playerAxis.x = 0;
@@ -550,7 +561,7 @@ public class Player : MonoBehaviour {
         anim.SetTrigger("Begin");
     }
 
-    public void BeginGame() {
+    public void FinishInitialCutscene() {
         cutscene = false;
         anim.Play("Ground");
         save.Reset();

@@ -8,7 +8,7 @@ namespace Command {
     public class End : VsnCommand {
 
         public override void Execute() {
-            Player.instance.BeginGame();
+            Player.instance.FinishInitialCutscene();
         }
 
         public override void AddSupportedSignatures() {

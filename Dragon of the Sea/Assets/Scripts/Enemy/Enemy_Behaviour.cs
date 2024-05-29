@@ -222,7 +222,7 @@ public class EnemyBehaviour : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D col) {
         if (col.gameObject.tag == "Death") {
-            TakeDamage(999);
+            TakeDamage(999, false);
         }
     }
 
@@ -231,20 +231,21 @@ public class EnemyBehaviour : MonoBehaviour {
         if (stunned) return;
         if (col.tag == "PlayerHitBox") {
             if (col.TryGetComponent<DamageHolder>(out DamageHolder holder)) {
-                if(holder.canDealDamage) TakeDamage(holder.damage);
+                if(holder.canDealDamage) TakeDamage(holder.damage, holder.doKnockback);
             }
         }
     }
 
-    public void TakeDamage(int damage) {
+    public void TakeDamage(int damage, bool knockback) {
         if (dead) return;
         currentAttackTime = 0;
         if (currentLife<= 0) {
+            if (type == enemy_type.Invader) Spawn.instance.RemoveEnemy(gameObject.transform.parent.gameObject);
             Death();
         } else {
             CameraShake.instance.Shake();
             SpawnParticles.instance.SpawnParticle("Hit1", transform.position);
-            Impulse();
+            if (knockback) Impulse();
             currentLife -= damage;
             SelectTakeDamageSound();
             anim.SetTrigger("Take Damage");
@@ -269,7 +270,6 @@ public class EnemyBehaviour : MonoBehaviour {
     }
 
     void Death() {
-        if(type == enemy_type.Invader) Spawn.instance.RemoveEnemy(gameObject);
         SpawnParticles.instance.SpawnParticle("Blood", transform.position);
         int chance = UnityEngine.Random.Range(0,101);
         if(type == enemy_type.Invader) if(chance <= chanceDeDrop) SpawnParticles.instance.SpawnParticle("Cura", transform.position);

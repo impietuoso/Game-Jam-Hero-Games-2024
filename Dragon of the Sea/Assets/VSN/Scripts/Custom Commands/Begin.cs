@@ -7,7 +7,7 @@ namespace Command {
     public class Begin : VsnCommand {
 
         public override void Execute() {
-            Player.instance.InitialCutscene();
+            Player.instance.BeginInitialCutscene();
         }
 
         public override void AddSupportedSignatures() {

@@ -39,8 +39,8 @@ public class GameConfig : MonoBehaviour {
         if (PlayerPrefs.GetInt("Resolution", 0) >= filteredResoltions.Count)
             PlayerPrefs.SetInt("Resolution", filteredResoltions.Count - 1);
         
-        resolutionDropdown.value = PlayerPrefs.GetInt("Resolution", 0);
-        windowModeDropdown.value = PlayerPrefs.GetInt("Resolution", 0);        
+        resolutionDropdown.value = PlayerPrefs.GetInt("Resolution", filteredResoltions.Count - 1);
+        windowModeDropdown.value = PlayerPrefs.GetInt("Windowmode", 0);
 
         SetResolution(PlayerPrefs.GetInt("Resolution", 0));
     }
@@ -83,8 +83,8 @@ public class GameConfig : MonoBehaviour {
     public void UpdateSoundVolume() {
         audioMixer.SetFloat("BGM", LinearToDecibel(PlayerPrefs.GetFloat("BGMVolume", 0.3f)));
         audioMixer.SetFloat("SFX", LinearToDecibel(PlayerPrefs.GetFloat("SFXVolume", 0.3f)));
-        BGMSlider.SetValueWithoutNotify(PlayerPrefs.GetFloat("BGMVolume"));
-        SFXSlider.SetValueWithoutNotify(PlayerPrefs.GetFloat("SFXVolume"));
+        BGMSlider.SetValueWithoutNotify(PlayerPrefs.GetFloat("BGMVolume", 0.3f));
+        SFXSlider.SetValueWithoutNotify(PlayerPrefs.GetFloat("SFXVolume", 0.3f));
     }
 
     public void SetBGMVolume(float value) {

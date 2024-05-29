@@ -328,10 +328,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   showGizmo: 1
-  maxLife: 6
+  maxLife: 5
   damage: 1
   attackRadious: 7
-  attackFireRate: 1.8
+  attackFireRate: 1.3
   shotSpeed: 20
   projectile: {fileID: 6542129852504857961, guid: 26c48e0ad8618ae48bd40ad688654ee0, type: 3}
   fireEffect: {fileID: 4423916976327485151, guid: f22a349dd1eeca145b47fefabb1655ad, type: 3}

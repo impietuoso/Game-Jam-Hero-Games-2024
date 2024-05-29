@@ -2069,10 +2069,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44840e445712c9d4281ea7ef51527839, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseObjective: <b>Objetivos:</b> \n Siga ao Porto
-  islandObjective: <b>Objetivos:</b> \n Resgate todos os 10 Aliados
-  finalbattleObjective: <b>Objetivos:</b> \n Elimine todos os Invasores
+  objectives:
+  - objetiveText: 
+  - objetiveText: 
+  - objetiveText: 
   save: {fileID: 11400000, guid: 3cc11de5d1ec51c44a49148b65a0df04, type: 2}
+  scene: 0
 --- !u!1 &1441563477820588373
 GameObject:
   m_ObjectHideFlags: 0
@@ -3590,7 +3592,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -5361,7 +5363,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -13441,7 +13443,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 13
+  m_SortingOrder: 21
   m_TargetDisplay: 0
 --- !u!114 &2002962030043007708
 MonoBehaviour:

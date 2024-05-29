@@ -1,4 +1,4 @@
 ﻿fade_out 0.5 "black"
 wait 1
-load_scene "Island"
 set_var tutorial_terminado true
+load_scene "2 Island"

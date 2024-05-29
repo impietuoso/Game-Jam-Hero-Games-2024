@@ -55,16 +55,16 @@ MonoBehaviour:
   - enemy_types:
     - {fileID: 4257057478405804390, guid: a821b46bd27c1c340b5b647f37a532b3, type: 3}
     numberOfEnemies: 5
-    timeUntilNextWave: 15
+    timeUntilNextWave: 10
   - enemy_types:
     - {fileID: 4257057478405804390, guid: a821b46bd27c1c340b5b647f37a532b3, type: 3}
     numberOfEnemies: 7
-    timeUntilNextWave: 25
+    timeUntilNextWave: 10
   spawnFireRate: 2
-  timeUntilBeginWave: 20
+  timeUntilBeginWave: 10
   timeText: {fileID: 4563091561838235976}
   boss: {fileID: 1033302008981892691, guid: 4d21f1b3f5133f94382b5ccd9b225461, type: 3}
-  lastEnemy: []
+  enemires: []
   waitingForLastEnemy: 0
   currentWave: 0
   canSpawn: 0

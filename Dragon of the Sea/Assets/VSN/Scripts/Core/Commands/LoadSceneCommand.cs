@@ -9,7 +9,7 @@ namespace Command{
 	public class LoadSceneCommand : VsnCommand {
 
 		public override void Execute (){
-      SceneManager.LoadScene(args[0].GetStringValue());
+            SceneManager.LoadScene(args[0].GetStringValue());
 		}
 
     public override void AddSupportedSignatures() {

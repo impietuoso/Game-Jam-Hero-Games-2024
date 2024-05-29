@@ -17,7 +17,7 @@ public class Spawn : MonoBehaviour {
     public float timeUntilBeginWave;
     public TextMeshProUGUI timeText;
     public GameObject boss;
-    public List<GameObject> lastEnemy = new();
+    public List<GameObject> enemires = new();
     public bool waitingForLastEnemy;
     private bool ending;
 
@@ -36,26 +36,30 @@ public class Spawn : MonoBehaviour {
 
     void Update() {
         if(waitingForLastEnemy) {
-            if(lastEnemy.Count == 0 && !ending) {
+            if(enemires.Count == 0 && !ending) {
                 ending = true;
                 Player.instance.StopPlayer();
                 VsnController.instance.StartVSN("GameWin");
             }
         }
 
-        if (timeUntilBeginWave > 0 && currentWave < waves.Count) {
-            timeUntilBeginWave -= Time.deltaTime;
-            timeText.text = "Próxima Invasão em: " + timeUntilBeginWave.ToString("F0");
-        } else timeText.text = "Derrote Todos os Inimigos!";
-
-        if (timeUntilBeginWave < 0) timeUntilBeginWave = 0;
+        
 
         if (canSpawn) {
             currentSpawnTime += Time.deltaTime;
-            timeText.text = "Próxima Invasão em " + (waves[currentWave].timeUntilNextWave - currentSpawnTime).ToString("F0");
+            //timeText.text = "Derrota todos os Invasores";
+            //timeText.text = "Próxima Invasão em " + (waves[currentWave].timeUntilNextWave - currentSpawnTime).ToString("F0");
             if (currentSpawnTime >= spawnFireRate) {
                 TrySpawn();
             }
+        } else {
+            if (timeUntilBeginWave > 0 && currentWave < waves.Count) {
+                timeUntilBeginWave -= Time.deltaTime;
+                timeText.text = "Próxima Invasão: " + timeUntilBeginWave.ToString("F0");
+                
+            } else timeText.text = "Derrota todos os Invasores";
+
+            if (timeUntilBeginWave < 0) timeUntilBeginWave = 0;
         }
     }
 
@@ -104,11 +108,11 @@ public class Spawn : MonoBehaviour {
             int randomType = UnityEngine.Random.Range(0, waves[currentWave].enemy_types.Count);
             GameObject newObj = Instantiate(waves[currentWave].enemy_types[randomType], spawnPoint.position, Quaternion.identity);
             TryVelocity(newObj);
-            lastEnemy.Add(newObj);
+            enemires.Add(newObj);
         } else {
             GameObject newObj = Instantiate(waves[currentWave].enemy_types[0], spawnPoint.position, Quaternion.identity);
             TryVelocity(newObj);
-            lastEnemy.Add(newObj);
+            enemires.Add(newObj);
         }
         currentSpawnedObject++;
     }
@@ -124,7 +128,8 @@ public class Spawn : MonoBehaviour {
     }
 
     public void RemoveEnemy(GameObject enemy) {
-        if (lastEnemy.Contains(enemy)) lastEnemy.Remove(enemy);    
+        if (enemires.Contains(enemy)) enemires.Remove(enemy);
+        else Debug.Log("Inimigo não encontrado");
     }
 }
 

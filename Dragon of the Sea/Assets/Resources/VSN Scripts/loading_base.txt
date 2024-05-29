@@ -59,7 +59,7 @@ if cutsceneended == false
  fade_out 0.5 "black"
  wait 1
  set_var cutsceneended true
- load_scene "BaseScene"
+ load_scene "1 Base"
 else
- load_scene "BaseScene"
+ load_scene "1 Base"
 endif
