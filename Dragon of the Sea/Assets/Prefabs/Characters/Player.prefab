@@ -784,6 +784,9 @@ MonoBehaviour:
   coyoteTime: 0.2
   currentCoyote: 0
   coyote: 0
+  inputCorrectionTime: 0.3
+  currentinputCorrection: 0
+  inputCorrection: 0
 --- !u!114 &9065556613355431157
 MonoBehaviour:
   m_ObjectHideFlags: 0

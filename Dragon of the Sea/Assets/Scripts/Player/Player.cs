@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using static UnityEngine.InputSystem.InputAction;
 
 public class Player : MonoBehaviour {
 
@@ -91,6 +92,14 @@ public class Player : MonoBehaviour {
     public float coyoteTime;
     public float currentCoyote;
     public bool coyote;
+
+    public float inputCorrectionTime;
+    public float currentinputCorrection;
+    public bool inputCorrection;
+
+    CallbackContext lastJump;
+
+
     #endregion
 
     void Awake() {
@@ -123,6 +132,17 @@ public class Player : MonoBehaviour {
                 if (currentCoyote > coyoteTime) {
                     coyote = false;
                 } else currentCoyote += Time.deltaTime;
+            }
+        }
+
+        if (inputCorrection) {
+            if (rb.velocity.y <= 0 ) {
+                if (currentinputCorrection > inputCorrectionTime) {
+                    inputCorrection = false;
+                } else {
+                    currentinputCorrection += Time.deltaTime;
+                    if (IsGrounded()) Jump(lastJump);
+                }
             }
         }
 
@@ -269,9 +289,17 @@ public class Player : MonoBehaviour {
         if (dead) return;
         if (cutscene) return;
         if (isAttacking) return;
+
+        if(context.performed && !IsGrounded() && !inputCorrection) {
+            inputCorrection = true;
+            lastJump = context;
+        }
+
         if (context.performed && IsGrounded()) {
             currentCoyote = 0;
+            currentinputCorrection = 0;
             coyote = false;
+            inputCorrection = false;
             canCountWalkValue = false;
             jumping = true;
             anim.SetTrigger("Jumping");
