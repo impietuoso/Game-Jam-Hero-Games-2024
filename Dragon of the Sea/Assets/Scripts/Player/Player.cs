@@ -12,6 +12,8 @@ public class Player : MonoBehaviour {
 
     public static Player instance;
     private Vector2 playerAxis;
+    public Vector2 aim;
+    public Vector2 aimAxis;
     public float playerVelocity;
     public float jumpForce;
     public float fallMultiply;
@@ -84,6 +86,11 @@ public class Player : MonoBehaviour {
     public TextMeshProUGUI objectiveText;
     public Save save;
 
+    public bool controlAim;
+
+    public float coyoteTime;
+    public float currentCoyote;
+    public bool coyote;
     #endregion
 
     void Awake() {
@@ -111,6 +118,14 @@ public class Player : MonoBehaviour {
         if (IsGrounded()) rb.velocity = new Vector2(playerAxis.x * playerVelocity, rb.velocity.y);
         else rb.velocity = new Vector2(playerAxis.x * (playerVelocity - jumpingSlow), rb.velocity.y);
 
+        if (coyote) {
+            if (rb.velocity.y < 0 && !jumping) {
+                if (currentCoyote > coyoteTime) {
+                    coyote = false;
+                } else currentCoyote += Time.deltaTime;
+            }
+        }
+
         if (countComboResetTime) {
             currentComboTime += Time.deltaTime;
             if(currentComboTime > resetComboTime) {
@@ -127,6 +142,9 @@ public class Player : MonoBehaviour {
             else currentWaterBallSize = maxWaterBallSize;
             waterBall.transform.localScale = Vector2.one * currentWaterBallSize;
         }
+
+        if (controlAim) aim = aimAxis + (Vector2)transform.position;
+        else aim = (Vector2)transform.position;
 
         if (playerAxis.x != 0 && canCountWalkValue) walkValue += Mathf.Abs(playerAxis.x) * Time.deltaTime;
 
@@ -252,9 +270,11 @@ public class Player : MonoBehaviour {
         if (cutscene) return;
         if (isAttacking) return;
         if (context.performed && IsGrounded()) {
+            currentCoyote = 0;
+            coyote = false;
             canCountWalkValue = false;
             jumping = true;
-            anim.SetTrigger("Jump");
+            anim.SetTrigger("Jumping");
             playlist.PlaySFX("jump");
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             rb.gravityScale = 4;
@@ -282,6 +302,12 @@ public class Player : MonoBehaviour {
         }
     }
 
+    public void Aim(InputAction.CallbackContext context) {
+        aimAxis = context.ReadValue<Vector2>();
+        if (context.performed) controlAim = true;
+        else if (context.canceled) controlAim = false;
+    }
+
     public void Attack(InputAction.CallbackContext context) {
         if (dead) return;
         if (cutscene) return;
@@ -298,14 +324,19 @@ public class Player : MonoBehaviour {
             if (isStoping) isStoping = false;
             
             walkValue = 0;
-            var mousePosition = Mouse.current.position.ReadValue();
+
+            var mousePosition = Vector2.zero;
+            if (controlAim) {
+                mousePosition = aim;
+            } else {
+                mousePosition = Mouse.current.position.ReadValue();
+            }
             var worldMousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
             var distance = (Vector2)worldMousePosition - (Vector2)transform.position;
             float dir = distance.x >= 0 ? 1 : -1;
             if (distance.magnitude <= meleeAttackRange) MeleeAttack(dir);
             else RangedAttack();
-        }
-        
+        }        
     }
 
     private void MeleeAttack(float dir) {
@@ -320,7 +351,7 @@ public class Player : MonoBehaviour {
     }
 
     private IEnumerator MeleeWaterballAttack(float dir) {
-        //SpendWater();
+        SpendWater();
         if (hitbox.TryGetComponent<DamageHolder>(out DamageHolder holder)) {
             holder.damage = playerDamage * (int) (waterBall.transform.localScale.x * waterBallIncreaseValue);
             holder.doKnockback = true;
@@ -361,8 +392,12 @@ public class Player : MonoBehaviour {
             holder.damage = playerDamage;
             holder.doKnockback = false;
         }
-
-        var mousePosition = Mouse.current.position.ReadValue();
+        var mousePosition = Vector2.zero;
+        if (controlAim) {
+            mousePosition = aim;
+        } else {
+            mousePosition = Mouse.current.position.ReadValue();
+        }
         var worldMousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
 
         var distance = (Vector2)worldMousePosition - (Vector2)transform.position;
@@ -373,7 +408,9 @@ public class Player : MonoBehaviour {
 
         DOTween.ToAlpha(() => meleeArea.color, color => meleeArea.color = color, 0, meleeAttackAreaSpeedDelay);
         HorizontalImpulse(distance);
-        if (isAttacking) isAttacking = false;
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //Possivel Resolução do Bug de Ficar Preso
+        //if (isAttacking) isAttacking = false;
     }
 
     private void HorizontalImpulse(Vector3 mouseDistance) {
@@ -456,6 +493,8 @@ public class Player : MonoBehaviour {
             rb.velocity = Vector2.zero;
             if (Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer)) {
                 playerAxis.x = 0;
+                currentCoyote = 0;
+                coyote = false;
                 if (isStoping) isStoping = false;
                 if (isAttacking) isAttacking = false;
                 PlayerMove(lastInput);
@@ -490,10 +529,18 @@ public class Player : MonoBehaviour {
 
     private bool IsGrounded() {
         bool grounded = Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer);
-        if (!grounded) walkDustParticle.Stop();
+        if (!grounded) {
+            walkDustParticle.Stop();
+            if (!jumping) {
+                if (rb.velocity.y < 0 && !coyote) {
+                    coyote = true;
+                }
+            } else {
+                if (coyote) coyote = false;
+            }
+        }
         if (!grounded && lastInput.ReadValue<Vector2>().x == 0) playerAxis.x = 0;
-
-        return grounded;
+        return coyote == true ? coyote : grounded;
     }
 
     public void TakeDamage(int damage) {
@@ -575,7 +622,6 @@ public class Player : MonoBehaviour {
         objectiveText.text = save.objective;
     }
 
-
     public void Cura(int cura) {
         if (currentPlayerHp + cura > maxPlayerHp) {
             currentPlayerHp = maxPlayerHp;
@@ -584,4 +630,5 @@ public class Player : MonoBehaviour {
         }
         hpSlider.value = currentPlayerHp;
     }
+
 }

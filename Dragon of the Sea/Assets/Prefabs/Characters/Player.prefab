@@ -190,6 +190,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   canDealDamage: 1
+  doKnockback: 0
 --- !u!1 &1867641190338413460
 GameObject:
   m_ObjectHideFlags: 0
@@ -699,6 +700,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 1d8bb288-f559-46aa-a36d-15d66df633ee
     m_ActionName: Keyboard/OpenMenu[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4030286516935545908}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: Aim
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 1c6e5b4b-33b8-4eea-ab1d-2b54b73ca50c
+    m_ActionName: Keyboard/Aim[/XInputControllerWindows1/rightStick]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Keyboard
@@ -716,6 +733,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e109739258016c9418dad5c7abd55fe6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  aim: {x: 0, y: 0}
+  aimAxis: {x: 0, y: 0}
   playerVelocity: 12
   jumpForce: 18
   fallMultiply: 0.2
@@ -761,6 +780,10 @@ MonoBehaviour:
   meleeAttackAreaSpeedDelay: 0.2
   objectiveText: {fileID: 0}
   save: {fileID: 0}
+  controlAim: 0
+  coyoteTime: 0.2
+  currentCoyote: 0
+  coyote: 0
 --- !u!114 &9065556613355431157
 MonoBehaviour:
   m_ObjectHideFlags: 0

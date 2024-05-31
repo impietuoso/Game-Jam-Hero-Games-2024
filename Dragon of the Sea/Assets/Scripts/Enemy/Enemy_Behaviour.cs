@@ -93,8 +93,8 @@ public class EnemyBehaviour : MonoBehaviour {
             if (type == enemy_type.Wait) {
                 var homeDir = waitPoint.transform.position.x - transform.position.x;
 
-                if (Mathf.Abs(homeDir) > 0.5f) {
                     var dir = homeDir >= 0 ? 1 : -1;
+                if (Mathf.Abs(homeDir) > 0.5f) {
                     var homeSpeed = speed * dir;
                     transform.localScale = new Vector2(dir, 1);
                     rb.velocity = new Vector2(homeSpeed, 0);
@@ -104,9 +104,9 @@ public class EnemyBehaviour : MonoBehaviour {
                 }
             } else if(type == enemy_type.Patrol) {
                 var homeDir = currentPatrolPoint.transform.position.x - transform.position.x;
-
-                if (Mathf.Abs(homeDir) > 0.2f) {
+        
                     var dir = homeDir >= 0 ? 1 : -1;
+                if (Mathf.Abs(homeDir) > 0.2f) {
                     var homeSpeed = speed/2 * dir;
                     transform.localScale = new Vector2(dir, 1);
                     rb.velocity = new Vector2(homeSpeed, 0);
@@ -147,6 +147,7 @@ public class EnemyBehaviour : MonoBehaviour {
                 Attack(dir);
             }
         } else {
+            transform.localScale = new Vector2(dir, 1);
             rb.velocity = new Vector2(speed * dir, 0);
         }
     }
@@ -177,9 +178,11 @@ public class EnemyBehaviour : MonoBehaviour {
 
     void PersuitAndAttack() {
         if (persuit) {
-            var dir = playerDistance >= 0 ? 1 : -1;            
+            if (player == null) player = Player.instance.transform;
+            playerDistance = player.position.x - transform.position.x;
+            var dir = playerDistance >= 0 ? 1 : -1;
             if (Mathf.Abs(playerDistance) <= attackRadious) {
-                if(rb.velocity.x != 0) rb.velocity = Vector2.zero;
+                if (rb.velocity.x != 0) rb.velocity = Vector2.zero;
                 currentAttackTime += Time.deltaTime;
                 transform.localScale = new Vector2(dir, 1);
                 if (currentAttackTime > attackFireRate) {
@@ -190,10 +193,6 @@ public class EnemyBehaviour : MonoBehaviour {
                 rb.velocity = new Vector2(speed * dir, 0);
             }
         }
-    }
-
-    void Invade() {
-
     }
 
     void Attack(int dir) {
