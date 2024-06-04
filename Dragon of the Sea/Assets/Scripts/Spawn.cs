@@ -38,16 +38,15 @@ public class Spawn : MonoBehaviour {
         if(waitingForLastEnemy) {
             if(enemires.Count == 0 && !ending) {
                 ending = true;
-                Player.instance.StopPlayer();
                 VsnController.instance.StartVSN("GameWin");
+                Player.instance.StopPlayer();
             }
         }
-
         
 
         if (canSpawn) {
             currentSpawnTime += Time.deltaTime;
-            //timeText.text = "Derrota todos os Invasores";
+            timeText.text = "Derrota todos os Invasores";
             //timeText.text = "Próxima Invasão em " + (waves[currentWave].timeUntilNextWave - currentSpawnTime).ToString("F0");
             if (currentSpawnTime >= spawnFireRate) {
                 TrySpawn();
@@ -57,7 +56,7 @@ public class Spawn : MonoBehaviour {
                 timeUntilBeginWave -= Time.deltaTime;
                 timeText.text = "Próxima Invasão: " + timeUntilBeginWave.ToString("F0");
                 
-            } else timeText.text = "Derrota todos os Invasores";
+            } //else timeText.text = "Derrota todos os Invasores";
 
             if (timeUntilBeginWave < 0) timeUntilBeginWave = 0;
         }

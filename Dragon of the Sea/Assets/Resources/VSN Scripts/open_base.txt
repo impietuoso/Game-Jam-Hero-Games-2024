@@ -12,7 +12,7 @@ say "Se não tiver água o suficiente, seus ataques não funcionarão"
 say "Não há mais tempo a perder, corra, pegue a Jangada no final da ilha e vá ao resgate de seu Povo!"
 set_var tutorial_terminado true
 
-wait 1
+wait 1.5
 End "Liberar Controle do Player"
 
 else

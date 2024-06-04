@@ -1,4 +1,4 @@
-﻿fade_out 0.5 "black"
+﻿fade_out 0 "black"
 fade_in 0.5
 wait 1
 set_var tutorial_terminado true

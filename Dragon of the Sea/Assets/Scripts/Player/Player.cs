@@ -625,7 +625,7 @@ public class Player : MonoBehaviour {
         DisableAttack();
         playerAxis.x = 0;
         rb.velocity = Vector2.zero;
-        enabled = false;
+        //enabled = false;
     }
 
     public void BeginInitialCutscene() {
